@@ -43,19 +43,21 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	public Users validateUser(String email, String password) {
-		String validateQuery = "select * from users1 where email_id ='" + email + "' and password= '" + password + "'";
+		String validateQuery = "select user_id,Name, password,mobile_no, email_id ,Address,wallet from users1 where email_id = ? and password = ? ";
 		ConnectionUtil conUtil;
 		Connection con = ConnectionUtil.getDbconnection();
 
-		Statement stmt = null;
+		PreparedStatement stmt = null;
 		Users user = null;
 		try {
-			stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(validateQuery);
-			if (rs.next()) {
+			stmt = con.prepareStatement(validateQuery);
+			stmt.setString(1,email);
+			stmt.setString(2,password);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
 				// System.out.println(rs.getString(2)+" "+rs.getLong(3));
 
-				user = new Users(rs.getInt(1), rs.getString(2), password, rs.getLong(4), email, rs.getString(6),
+				user = new Users(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5 ), rs.getString(6),
 						rs.getDouble(7));
 				System.out.println(user);
 			}
@@ -89,15 +91,16 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	public Users findUser(String email) {
-		String Query1 = "select  * from Users1 where email_id='" + email + "'";
+		String Query1 = "select  * from Users1 where email_id=? ";
 		ConnectionUtil conUtil = new ConnectionUtil();
 		Connection con = ConnectionUtil.getDbconnection();
-		Statement stmt = null;
+		PreparedStatement stmt = null;
 		Users user = null;
 		try {
-			stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(Query1);
-			if (rs.next()) {
+			stmt = con.prepareStatement(Query1);
+			stmt.setString(1, email);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
 				// System.out.println(rs.getString(2)+" "+rs.getLong(3));
 
 				user = new Users(rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5), rs.getString(6),
@@ -182,18 +185,19 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	public Users findUserId(int id) {
-		String Query1 = "select  * from Users1 where user_id=" + id;
+		String Query1 = "select  * from Users1 where user_id= ?";
 		ConnectionUtil conUtil = new ConnectionUtil();
 		Connection con = ConnectionUtil.getDbconnection();
-		Statement stmt = null;
+		PreparedStatement stmt = null;
 		Users user = null;
 		try {
-			stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(Query1);
+			stmt = con.prepareStatement(Query1);
+			stmt.setInt(1,id);
+			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
 				// System.out.println(rs.getString(2)+" "+rs.getLong(3));
 
-				user = new Users(rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5), rs.getString(6),
+				user = new Users(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5), rs.getString(6),
 						rs.getDouble(7));
 				// System.out.println(user);
 			}
