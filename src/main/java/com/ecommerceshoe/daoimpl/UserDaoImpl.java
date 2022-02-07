@@ -145,6 +145,7 @@ public class UserDaoImpl implements UserDao {
 		String getWalletquery = "select wallet from users1 where email_id=?";
 		String commit = "commit";
 		PreparedStatement preparedstatement = null;
+		
 		ResultSet resultset = null;
 		int a = 0;
 		try {
