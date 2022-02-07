@@ -25,7 +25,7 @@ public class SearchingProductController extends HttpServlet {
 		HttpSession session = request.getSession();
 		Users user = (Users) session.getAttribute("CurrentUser");
 		List<Product> searchpro = (List<Product>) session.getAttribute("list");
-		session.setAttribute("search", searchpro);
+		request.setAttribute("search", searchpro);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("search.jsp");
 		requestDispatcher.forward(request, response);
 

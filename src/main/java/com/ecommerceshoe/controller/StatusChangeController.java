@@ -3,6 +3,7 @@ package com.ecommerceshoe.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,9 +28,11 @@ public class StatusChangeController extends HttpServlet {
 		OrderDaoImpl orderdao = new OrderDaoImpl();
 		Boolean b = orderdao.statuschange(orderid);
 		List<Order> orderList = orderdao.ShowOrder();
-		session.setAttribute("order", orderList);
-		if (b) {
-			response.sendRedirect("statusChange.jsp");
+		request.setAttribute("order", orderList);
+		if (Boolean.TRUE.equals(b)) {
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("statusChange.jsp");
+			requestDispatcher.forward(request, response);
+//			response.sendRedirect("statusChange.jsp");
 		}
 	}
 }

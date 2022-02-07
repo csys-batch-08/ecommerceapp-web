@@ -3,6 +3,7 @@ package com.ecommerceshoe.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,17 +21,19 @@ import com.ecommerceshoe.model.Product;
 public class deleteProductController extends HttpServlet {
 
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int productid = Integer.parseInt(req.getParameter("proid"));
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int productid = Integer.parseInt(request.getParameter("proid"));
 		ProductDaoImpl productDao = new ProductDaoImpl();
-		HttpSession session = req.getSession();
+		HttpSession session = request.getSession();
 		int i2 = productDao.delete(productid);
 		if (i2 != 0) {
 			List<Product> productList = productDao.showProduct();
-			session.setAttribute("Product", productList);
-			resp.sendRedirect("deleteProduct.jsp");
+			request.setAttribute("Product", productList);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("deleteProduct.jsp");
+			requestDispatcher.forward(request, response);
+//			response.sendRedirect("deleteProduct.jsp");
 		} else {
-			resp.sendRedirect("product.jsp");
+			response.sendRedirect("product.jsp");
 		}
 
 	}

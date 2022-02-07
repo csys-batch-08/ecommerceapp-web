@@ -29,10 +29,15 @@ public class OrderCancelController extends HttpServlet {
 			double price = Double.parseDouble(request.getParameter("price"));
 			UserDaoImpl userDao = new UserDaoImpl();
 			int n = userDao.updateuserWallet(user, price);
+			try {
 			if (n > 0) {
 				session.setAttribute("wallet", user.getWallet());
 				session.setAttribute("updatewallet", true);
 				response.sendRedirect("showPro.jsp");
+			}
+			}
+			catch(Exception e) {
+				e.printStackTrace();
 			}
 		}
 	}

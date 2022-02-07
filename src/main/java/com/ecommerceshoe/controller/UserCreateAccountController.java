@@ -16,7 +16,9 @@ import com.ecommerceshoe.model.Users;
 @WebServlet("/UserCreateAccountController")
 public class UserCreateAccountController extends HttpServlet {
 
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+@Override
+protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String name = req.getParameter("name");
 		String password = req.getParameter("pass");
@@ -26,11 +28,16 @@ public class UserCreateAccountController extends HttpServlet {
 		UserDaoImpl userdao = new UserDaoImpl();
 		Users user = new Users(name, password, mobileno, email, address, 0.0);
 		userdao.inserUser(user);
-		if (user != null) {
+		try {
+		if (user!= null) {
 			resp.sendRedirect("index.jsp");
-
-		} else {
+		} 
+		else {
 			resp.sendRedirect("newUser.jsp");
+		}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
 		}
 	}
 

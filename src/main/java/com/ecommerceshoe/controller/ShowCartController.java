@@ -27,7 +27,7 @@ public class ShowCartController extends HttpServlet {
 		CartDaoImpl cartdao = new CartDaoImpl();
 		Users user = (Users) session.getAttribute("CurrentUser");
 		List<cart> cartList = cartdao.showCart(user);
-		session.setAttribute("cart", cartList);
+		request.setAttribute("cart", cartList);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("showCartJsp.jsp");
 		requestDispatcher.forward(request, response);
 

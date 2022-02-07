@@ -25,10 +25,15 @@ public class UpdateWalletController extends HttpServlet {
 		Double amount = Double.parseDouble(request.getParameter("Amount"));
 		UserDaoImpl userdao = new UserDaoImpl();
 		int n = userdao.updateuserWallet(user, amount);
+		try {
 		if (n != 0) {
 			session.setAttribute("wallet", user.getWallet());
 			session.setAttribute("recharge", 1);
 			response.sendRedirect("walletUpdate.jsp");
+		}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
 		}
 
 	}

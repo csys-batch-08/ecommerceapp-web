@@ -24,10 +24,15 @@ public class UpdateProductController extends HttpServlet {
 		int productid = Integer.parseInt(req.getParameter("proid"));
 		ProductDaoImpl productdao = new ProductDaoImpl();
 		int i1 = productdao.updated(brandSize, price, productid);
+		try {
 		if (i1 != 0) {
 			resp.sendRedirect("welcomeAdmin.jsp");
 		} else {
 			resp.sendRedirect("product.jsp");
+		}
+		}
+		catch(Exception e) {
+			
 		}
 	}
 }

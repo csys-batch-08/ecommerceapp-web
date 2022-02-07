@@ -96,7 +96,7 @@ li a:hover:not(.active) {
 				<th>price</th>
 				<th>orderDate</th>
 			</tr>
-			<c:forEach items="${sessionScope.order}" var="OrderList">
+			<c:forEach items="${requestScope.order}" var="OrderList">
 
 				<tr>
 					<td>${ OrderList.getUser().getName() }</td>

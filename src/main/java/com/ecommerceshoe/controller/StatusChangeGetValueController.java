@@ -25,7 +25,7 @@ public class StatusChangeGetValueController extends HttpServlet {
 		HttpSession session = request.getSession();
 		OrderDaoImpl orderdao = new OrderDaoImpl();
 		List<Order> orderList = orderdao.ShowOrder();
-		session.setAttribute("order", orderList);
+		request.setAttribute("order", orderList);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("statusChange.jsp");
 		requestDispatcher.forward(request, response);
 	}

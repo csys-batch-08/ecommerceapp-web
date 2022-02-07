@@ -92,7 +92,7 @@ li a:hover:not(.active) {
 
 			</tr>
 
-			<c:forEach items="${sessionScope.cart}" var="cartList">
+			<c:forEach items="${requestScope.cart}" var="cartList">
 
 				<tr>
 					<td>${ cartList.getUser().getName() }</td>

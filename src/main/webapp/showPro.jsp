@@ -108,11 +108,12 @@ h5{
 		<br> <br> <br> <br>
 	</div>
 	<div>
-		<c:forEach items="${sessionScope.product}" var="productlist">
-
+		
 
 			<div style="background-color:;" id="products">
 				<table>
+				<c:forEach items="${requestScope.product}" var="productlist">
+				
 					<tr>
 						<td><img src="assets/images/${ productlist.getColor()}.jpg" alt="img"
 							width=300px height=300px><br></td>

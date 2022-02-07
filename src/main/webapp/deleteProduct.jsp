@@ -94,7 +94,7 @@ li a:hover:not(.active) {
 					<th>Status</th>
 				</tr>
 
-				<c:forEach items="${sessionScope.Product}" var="productList">
+				<c:forEach items="${requestScope.Product}" var="productList">
 					<tr>
 						<td>${productList.getProductId()}</td>
 						<td>${productList.getBrandName()}</td>

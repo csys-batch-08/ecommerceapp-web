@@ -28,8 +28,12 @@ public class SearchProductController extends HttpServlet {
 		List<Product> listproduct = productdao.filterSize(search);
 		HttpSession session = request.getSession();
 		session.setAttribute("list", listproduct);
+		try {
 		response.sendRedirect("searchingcontroller");
-
+		
 	}
-
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

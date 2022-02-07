@@ -99,7 +99,7 @@ li a:hover:not(.active) {
 				<th>cancel</th>
 			</tr>
 
-			<c:forEach items="${sessionScope.orderCancel}" var="OrderList">
+			<c:forEach items="${requestScope.orderCancel}" var="OrderList">
 
 				<tr>
 					<td>${OrderList.getUser().getName() }</td>

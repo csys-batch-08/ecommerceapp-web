@@ -21,6 +21,7 @@ import com.ecommerceshoe.model.Users;
 @WebServlet("/ordercancelcontroller")
 public class OrderCancellingController extends HttpServlet {
 
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -28,7 +29,7 @@ public class OrderCancellingController extends HttpServlet {
 		OrderDaoImpl orderdao = new OrderDaoImpl();
 		Users user = (Users) session.getAttribute("CurrentUser");
 		List<Order> orderList = orderdao.ShowOrder(user);
-		session.setAttribute("orderCancel", orderList);
+		request.setAttribute("orderCancel", orderList);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("orderCancel.jsp");
 		requestDispatcher.forward(request, response);
 

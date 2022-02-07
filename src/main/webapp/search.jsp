@@ -16,7 +16,7 @@
 <body>
 
 	<table>
-		<c:forEach items="${sessionScope.search}" var="searchpro">
+		<c:forEach items="${requestScope.search}" var="searchpro">
 			<tr>
 
 

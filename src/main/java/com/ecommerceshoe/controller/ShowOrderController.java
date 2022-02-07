@@ -25,7 +25,7 @@ public class ShowOrderController extends HttpServlet {
 		Users user = (Users) session.getAttribute("CurrentUser");
 		OrderDaoImpl orderdao = new OrderDaoImpl();
 		List<Order> orderList = orderdao.ShowOrder(user);
-		session.setAttribute("order", orderList);
+		request.setAttribute("order", orderList);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("showOrder.jsp");
 		requestDispatcher.forward(request, response);
 
