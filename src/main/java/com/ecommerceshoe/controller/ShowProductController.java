@@ -31,7 +31,7 @@ public class ShowProductController extends HttpServlet {
 		List<Product> productList = productDao.showUserProduct();
 		session.setAttribute("wallet", wallet);
 		session.setAttribute("name", name );
-		request.setAttribute("product", productList);
+		session.setAttribute("product", productList);
 		RequestDispatcher requestDispatcher=request.getRequestDispatcher("showPro.jsp");
 	     requestDispatcher.forward(request, response);
 		

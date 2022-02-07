@@ -82,7 +82,7 @@ li a:hover:not(.active) {
 			<br> <br>
 		</div>
 		<div>
-			<table id="prod">
+			<table  aria-describedby="Update Product"id="prod">
 				<tr>
 					<th>productId</th>
 					<th>BrandName</th>
@@ -112,8 +112,10 @@ li a:hover:not(.active) {
 
 					</tr>
 				</c:forEach>
+				</table>
 		</div>
 
 	</div>
+	
 </body>
 </html>

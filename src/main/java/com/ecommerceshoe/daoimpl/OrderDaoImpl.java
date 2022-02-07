@@ -18,8 +18,8 @@ import com.ecommerceshoe.util.ConnectionUtil;
 public class OrderDaoImpl implements OrderDao {
 	public int insertOrder(Order orders) {
 		String orderQuery = "insert into Orders_details(User_id,products_id,Quantity,Price,order_date) values (?,?,?,?,sysdate) ";
-		ConnectionUtil connectionUtil = new ConnectionUtil();
-		Connection connection = connectionUtil.getDbconnection();
+		
+		Connection connection = ConnectionUtil.getDbconnection();
 		PreparedStatement preparedstatement = null;
 		int i = 0;
 		ResultSet resultset = null;
@@ -45,9 +45,9 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	public List<Order> ShowOrder(Users user) {
-		ConnectionUtil conUtil = new ConnectionUtil();
-		Connection connection = conUtil.getDbconnection();
-		List<Order> orderList = new ArrayList<Order>();
+		
+		Connection connection = ConnectionUtil.getDbconnection();
+		List<Order> orderList = new ArrayList<>();
 		String query = "select Order_id,products_id,User_id, Quantity,Price,order_date,Status from Orders_details where User_id= ?";
 		PreparedStatement preparedstatement = null;
 		Order order = null;
@@ -74,8 +74,8 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	public boolean orderCancel(int order_id) {
-		ConnectionUtil conUtil = new ConnectionUtil();
-		Connection connection = conUtil.getDbconnection();
+		
+		Connection connection = ConnectionUtil.getDbconnection();
 		String query = "update Orders_details set status='cancel' where Order_id=?";
 		PreparedStatement preparedstatement = null;
 		boolean b = false;
@@ -94,8 +94,8 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	public List<Object> TotalAmount(Date fromDate, Date toDate) {
-		ConnectionUtil conUtil = new ConnectionUtil();
-		Connection connection = conUtil.getDbconnection();
+		
+		Connection connection = ConnectionUtil.getDbconnection();
 		String query = "select products_id,sum(price) as price from  Orders_details where status='delivered' and order_date between ? and ? group BY products_id";
 		PreparedStatement preparedstatement = null;
 		ResultSet resultset = null;
@@ -106,10 +106,10 @@ public class OrderDaoImpl implements OrderDao {
 			preparedstatement = connection.prepareStatement(query);
 			preparedstatement.setDate(1, new java.sql.Date(fromDate.getTime()));
 			preparedstatement.setDate(2, new java.sql.Date(toDate.getTime()));
-			list = new ArrayList<Object>();
+			list = new ArrayList<>();
 			resultset = preparedstatement.executeQuery();
 			while (resultset.next()) {
-				listObject = new ArrayList<Object>();
+				listObject = new ArrayList<>();
 				listObject.add(resultset.getInt("products_id"));
 				listObject.add(resultset.getDouble("price"));
 				list.add(listObject);
@@ -123,8 +123,8 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	public List<Order> ShowOrder() {
-		ConnectionUtil conUtil = new ConnectionUtil();
-		Connection connection = conUtil.getDbconnection();
+		
+		Connection connection = ConnectionUtil.getDbconnection();
 		List<Order> orderList = new ArrayList<Order>();
 		String query = "select  Order_id,products_id,User_id, Quantity,Price,order_date,Status from Orders_details";
 		PreparedStatement preparedstatement = null;
@@ -153,10 +153,10 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	public boolean statuschange(int order_id) {
-		ConnectionUtil conUtil = new ConnectionUtil();
-		Connection connection = conUtil.getDbconnection();
+		
+		Connection connection = ConnectionUtil.getDbconnection();
 		String query = "update Orders_details set status='delivered' where Order_id=? ";
-		PreparedStatement preparedstatement;
+		PreparedStatement preparedstatement=null;
 		ResultSet resultset = null;
 		boolean b = false;
 		try {
@@ -166,13 +166,16 @@ public class OrderDaoImpl implements OrderDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		finally {
+			ConnectionUtil.close(connection, preparedstatement, resultset);
+		}
 		return b;
 	}
 
 	public List<Order> ShowBill(Users user) {
-		ConnectionUtil conUtil = new ConnectionUtil();
-		Connection connection = conUtil.getDbconnection();
-		List<Order> orderList = new ArrayList<Order>();
+		
+		Connection connection =ConnectionUtil.getDbconnection();
+		List<Order> orderList = new ArrayList<>();
 		String query = "select  Order_id,products_id,User_id, Quantity,Price,order_date,Status from Orders_details where user_id=?  order by Order_id desc fetch first 1 row only";
 		PreparedStatement preparedstatement = null;
 		Order order = null;

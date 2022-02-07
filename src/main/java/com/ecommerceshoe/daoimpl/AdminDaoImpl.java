@@ -13,13 +13,13 @@ import com.ecommerceshoe.util.ConnectionUtil;
 
 public class AdminDaoImpl implements AdminDao {
 	public Admin validateAdmin(String email, String password) {
-		String AdminQuery = "select admin_email,password from admins where admin_email =? and password=? ";
+		String adminQuery = "select admin_email,password from admins where admin_email =? and password=? ";
 		Connection connection = ConnectionUtil.getDbconnection();
 		PreparedStatement preparedstatement = null;
 		ResultSet resultset = null;
 		Admin admin = null;
 		try {
-			preparedstatement = connection.prepareStatement(AdminQuery);
+			preparedstatement = connection.prepareStatement(adminQuery);
 			preparedstatement.setString(1, email);
 			preparedstatement.setString(2, password);
 			resultset = preparedstatement.executeQuery();
@@ -33,8 +33,5 @@ public class AdminDaoImpl implements AdminDao {
 		}
 		return admin;
 	}
-	public Admin AdminQuery(String admin_email, String password) {
-		return null;
-	}
-
+	
 }

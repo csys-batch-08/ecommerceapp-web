@@ -84,7 +84,7 @@ li a:hover:not(.active) {
 			<br> <br>
 		</div>
 		<div>
-			<table id="prod">
+			<table  aria-describedby="statuschange" id="prod">
 				<tr>
 					<th>OrderId</th>
 					<th>UserName</th>

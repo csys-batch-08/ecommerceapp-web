@@ -20,6 +20,7 @@ import com.ecommerceshoe.model.Product;
 @WebServlet("/adminupdatecontroller")
 public class AdminUpdateProductController extends HttpServlet {
 
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ProductDaoImpl productdao = new ProductDaoImpl();

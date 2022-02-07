@@ -135,14 +135,14 @@ button {
 			</ul>
 			<br><br>
 			</div>
-	<table id="prod">
+	<table  aria-describedby="sales" id="prod">
 		
 		<tr>
 			<th>ProductId</th>
 			<th>TotalSales</th>
 		</tr>
 
-		<c:forEach items="${requestScope.List}" var="list">
+		<c:forEach items="${sessionScope.List}" var="list">
 
 			<tr>
 				<td>${list.get(0)}</td>
