@@ -20,15 +20,15 @@ import com.ecommerceshoe.model.Users;
 @WebServlet("/searchingcontroller")
 public class SearchingProductController extends HttpServlet {
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 HttpSession session=request.getSession();
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		Users user = (Users) session.getAttribute("CurrentUser");
-		List<Product> searchpro=(List<Product>)session.getAttribute("list");
+		List<Product> searchpro = (List<Product>) session.getAttribute("list");
 		session.setAttribute("search", searchpro);
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("search.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("search.jsp");
 		requestDispatcher.forward(request, response);
 
-		
 	}
 
 }

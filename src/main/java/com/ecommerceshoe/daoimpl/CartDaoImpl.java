@@ -16,12 +16,10 @@ import com.ecommerceshoe.model.cart;
 import com.ecommerceshoe.util.ConnectionUtil;
 
 public class CartDaoImpl implements CartDao {
-
 	public int insertCart(cart carts) {
-
 		String cartQuery = "insert into Cart_details(User_id,products_id,quantity,price) values (?,?,?,?)";
-		ConnectionUtil conUtil = new ConnectionUtil();
-		Connection connection = conUtil.getDbconnection();
+		ConnectionUtil connectionUtil = new ConnectionUtil();
+		Connection connection = connectionUtil.getDbconnection();
 		PreparedStatement preparedstatement = null;
 		int i = 0;
 		ResultSet resultset = null;
@@ -31,14 +29,11 @@ public class CartDaoImpl implements CartDao {
 			ProductDaoImpl productdao = new ProductDaoImpl();
 			int userId = userdao.findUserID(carts.getUser());
 			int productId = productdao.findProductId(carts.getProduct());
-
 			preparedstatement.setInt(1, userId);
 			preparedstatement.setInt(2, productId);
 			preparedstatement.setInt(3, carts.getQuantity());
 			preparedstatement.setDouble(4, carts.getPrice());
-
 			i = preparedstatement.executeUpdate();
-
 		} catch (SQLException e) {
 			// catch the exception and get that message
 			e.printStackTrace();
@@ -47,13 +42,12 @@ public class CartDaoImpl implements CartDao {
 			ConnectionUtil.close(connection, preparedstatement, resultset);
 		}
 		return i;
-
 	}
 
 	public List<cart> showCart(Users user) {
 		List<cart> cartList = new ArrayList<cart>();
 		String showQuery = "select Cartitems_id,products_id,User_id,quantity,price from  Cart_details  where User_id=? ";
-		ConnectionUtil conUtil = new ConnectionUtil();
+		ConnectionUtil connectionUtil = new ConnectionUtil();
 		Connection connection = ConnectionUtil.getDbconnection();
 		PreparedStatement preparedstatement = null;
 		cart carts = null;
@@ -69,7 +63,6 @@ public class CartDaoImpl implements CartDao {
 				Product product = productdao.findProduct(resultset.getInt(2));
 				carts = new cart(product, user, resultset.getInt(4), resultset.getDouble(5));
 				cartList.add(carts);
-
 			}
 		} catch (SQLException e) {
 

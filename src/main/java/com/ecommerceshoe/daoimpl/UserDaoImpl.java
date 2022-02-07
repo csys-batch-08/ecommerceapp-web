@@ -39,7 +39,7 @@ public class UserDaoImpl implements UserDao {
 		} catch (SQLException e) {
 			// catch the exception and get that message
 			e.printStackTrace();
-			System.out.println("Value not Setted in the query");
+
 		} finally {
 			ConnectionUtil.close(connection, preparedstatement, resultset);
 		}
@@ -50,7 +50,6 @@ public class UserDaoImpl implements UserDao {
 		String validateQuery = "select user_id,Name, password,mobile_no, email_id ,Address,wallet from users1 where email_id = ? and password = ? ";
 		ConnectionUtil conUtil;
 		Connection connection = ConnectionUtil.getDbconnection();
-
 		PreparedStatement preparedstatement = null;
 		Users user = null;
 		ResultSet resultset = null;
@@ -60,16 +59,12 @@ public class UserDaoImpl implements UserDao {
 			preparedstatement.setString(2, password);
 			resultset = preparedstatement.executeQuery();
 			if (resultset.next()) {
-
 				user = new Users(resultset.getInt(1), resultset.getString(2), resultset.getString(3),
 						resultset.getLong(4), resultset.getString(5), resultset.getString(6), resultset.getDouble(7));
-
 			}
 
 		} catch (SQLException e) {
-			// T5ODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("Statement error");
 		} finally {
 			ConnectionUtil.close(connection, preparedstatement, resultset);
 		}
@@ -91,7 +86,6 @@ public class UserDaoImpl implements UserDao {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			ConnectionUtil.close(connection, preparedstatement, resultset);
@@ -111,54 +105,43 @@ public class UserDaoImpl implements UserDao {
 			preparedstatement.setString(1, email);
 			resultset = preparedstatement.executeQuery();
 			while (resultset.next()) {
-				// System.out.println(rs.getString(2)+" "+rs.getLong(3));
-
 				user = new Users(resultset.getString(2), resultset.getString(3), resultset.getLong(4),
 						resultset.getString(5), resultset.getString(6), resultset.getDouble(7));
-
 			}
 
 		} catch (SQLException e) {
-			// T5ODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("Statement error");
 		} finally {
 			ConnectionUtil.close(connection, preparedstatement, resultset);
 		}
 		return user;
-
 	}
 
 	public int updateuserWallet(Users user, double amount) {
 		ConnectionUtil conUtil = new ConnectionUtil();
 		Connection connection = ConnectionUtil.getDbconnection();
-		String Query = "update users1 set wallet=wallet+? where email_id=?";
+		String query = "update users1 set wallet=wallet+? where email_id=?";
 		PreparedStatement preparedstatement = null;
 		ResultSet resultset = null;
 		int i = 0;
 		try {
-
-			preparedstatement = connection.prepareStatement(Query);
-
+			preparedstatement = connection.prepareStatement(query);
 			preparedstatement.setDouble(1, amount);
 			preparedstatement.setString(2, user.getEmail());
 			i = preparedstatement.executeUpdate();
 			user.setWallet(user.getWallet() + amount);
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		} finally {
 			ConnectionUtil.close(connection, preparedstatement, resultset);
 		}
 		return i;
-
 	}
 
 	public int Walletupdate(double OrderPrices, Users user) {
 		ConnectionUtil conUtil = new ConnectionUtil();
 		Connection connection = ConnectionUtil.getDbconnection();
-
-		String Query = "update users1 set wallet=wallet-? where email_id=?";
+		String query = "update users1 set wallet=wallet-? where email_id=?";
 		String getWalletquery = "select wallet from users1 where email_id=?";
 		String commit = "commit";
 		PreparedStatement preparedstatement = null;
@@ -166,14 +149,13 @@ public class UserDaoImpl implements UserDao {
 		int a = 0;
 		try {
 			preparedstatement = connection.prepareStatement(getWalletquery);
-
 			preparedstatement.setString(1, user.getEmail());
 			resultset = preparedstatement.executeQuery();
 			double wallet = 0;
 			if (resultset.next()) {
 				wallet = resultset.getDouble(1);
 			}
-			preparedstatement = connection.prepareStatement(Query);
+			preparedstatement = connection.prepareStatement(query);
 			preparedstatement.setDouble(1, OrderPrices);
 			preparedstatement.setString(2, user.getEmail());
 			a = preparedstatement.executeUpdate();
@@ -187,31 +169,26 @@ public class UserDaoImpl implements UserDao {
 			ConnectionUtil.close(connection, preparedstatement, resultset);
 		}
 		return a;
-
 	}
 
 	public Users findUserId(int id) {
-		String Query1 = "select  user_id,Name, password,mobile_no, email_id ,Address,wallet from Users1 where user_id= ? ";
+		String query1 = "select  user_id,Name, password,mobile_no, email_id ,Address,wallet from Users1 where user_id= ? ";
 		ConnectionUtil conUtil = new ConnectionUtil();
 		Connection connection = ConnectionUtil.getDbconnection();
 		PreparedStatement preparedstatement = null;
 		Users user = null;
 		ResultSet resultset = null;
 		try {
-			preparedstatement = connection.prepareStatement(Query1);
+			preparedstatement = connection.prepareStatement(query1);
 			preparedstatement.setInt(1, id);
 			resultset = preparedstatement.executeQuery();
 			while (resultset.next()) {
-
 				user = new Users(resultset.getInt(1), resultset.getString(2), resultset.getString(3),
 						resultset.getLong(4), resultset.getString(5), resultset.getString(6), resultset.getDouble(7));
-
 			}
 
 		} catch (SQLException e) {
-
 			e.printStackTrace();
-			System.out.println("Statement error");
 		} finally {
 			ConnectionUtil.close(connection, preparedstatement, resultset);
 		}
@@ -232,15 +209,12 @@ public class UserDaoImpl implements UserDao {
 			preparedstatement.setDouble(1, user.getWallet() + price);
 			preparedstatement.setInt(2, userId);
 			flag = preparedstatement.executeUpdate() > 0;
-
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			ConnectionUtil.close(connection, preparedstatement, resultset);
 		}
 		return flag;
-
 	}
 
 }

@@ -20,16 +20,15 @@ import com.ecommerceshoe.model.Product;
 @WebServlet("/deleteproductgetvalue")
 public class DeleteProductGetValueController extends HttpServlet {
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		 HttpSession session=request.getSession();
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		ProductDaoImpl productdao = new ProductDaoImpl();
 		List<Product> productList = productdao.showProduct();
 		session.setAttribute("Product", productList);
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("deleteProduct.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("deleteProduct.jsp");
 		requestDispatcher.forward(request, response);
-		
-		
+
 	}
 
 }

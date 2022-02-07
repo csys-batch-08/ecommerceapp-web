@@ -20,37 +20,22 @@ import com.ecommerceshoe.daoimpl.OrderDaoImpl;
  */
 @WebServlet("/CalculatePriceController")
 public class CalculatePriceController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    
-    public CalculatePriceController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
-		    
-			Date fromdate =sdf.parse(request.getParameter("fromDate"));
+			Date fromdate = sdf.parse(request.getParameter("fromDate"));
 			Date todate = sdf.parse(request.getParameter("toDate"));
 			HttpSession session = request.getSession();
-			OrderDaoImpl orderDao=new OrderDaoImpl();
-		List<Object> list=orderDao.TotalAmount(fromdate, todate);
-		session.setAttribute("List", list);
+			OrderDaoImpl orderDao = new OrderDaoImpl();
+			List<Object> list = orderDao.TotalAmount(fromdate, todate);
+			session.setAttribute("List", list);
 			response.sendRedirect("calculatePrice.jsp");
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	
-	}
 }

@@ -1,7 +1,5 @@
 package com.ecommerceshoe.model;
 
-
-
 public class Admin {
 	private String adminEmail;
 	private String password;
@@ -30,14 +28,12 @@ public class Admin {
 
 	public Admin() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	@Override
 	public String toString() {
 		return "Admin [adminEmail=" + adminEmail + ", password=" + password + "]";
 	}
-
-	
 
 }

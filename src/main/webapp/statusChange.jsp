@@ -69,7 +69,7 @@ li a:hover:not(.active) {
 </style>
 </head>
 <body style="background-color: pink;">
-	<form action="">
+	
 		<div>
 			<h1 style="text-align: center;">Orders</h1>
 			<ul>
@@ -123,12 +123,12 @@ li a:hover:not(.active) {
 						<td>${orderList.getStatus() }</td>
 						<td><c:if test="${orderList.getStatus() == 'Not Delivered'}">
 								<a href="StatusChange?orderId=${ orderList.getOrderId() }">
-									StatusChange</a>
+									<button>StatusChange</button></a>
 							</c:if></td>
 					</tr>
 				</c:forEach>
 			</table>
 		</div>
-	</form>
+
 </body>
 </html>

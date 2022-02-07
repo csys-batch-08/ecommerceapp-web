@@ -114,7 +114,7 @@ h5{
 			<div style="background-color:;" id="products">
 				<table>
 					<tr>
-						<td><img src="${ productlist.getColor()}.jpg" alt="img"
+						<td><img src="assets/images/${ productlist.getColor()}.jpg" alt="img"
 							width=300px height=300px><br></td>
 						<td>
 							<h3>BrandName: ${ productlist.getBrandName()}</h3>

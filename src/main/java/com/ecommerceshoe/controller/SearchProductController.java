@@ -19,31 +19,17 @@ import com.ecommerceshoe.model.Product;
  */
 @WebServlet("/SearchProductController")
 public class SearchProductController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-   
-    public SearchProductController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String search=request.getParameter("search");
-		ProductDaoImpl productdao=new ProductDaoImpl();
-		 List<Product> listproduct=productdao.filterSize(search);
-		 HttpSession session=request.getSession();
-		 session.setAttribute("list", listproduct);
-		 response.sendRedirect("searchingcontroller");
-		
-	}
+		String search = request.getParameter("search");
+		ProductDaoImpl productdao = new ProductDaoImpl();
+		List<Product> listproduct = productdao.filterSize(search);
+		HttpSession session = request.getSession();
+		session.setAttribute("list", listproduct);
+		response.sendRedirect("searchingcontroller");
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	
 	}
 
 }

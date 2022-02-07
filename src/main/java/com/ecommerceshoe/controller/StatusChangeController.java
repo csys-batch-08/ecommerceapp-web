@@ -18,28 +18,18 @@ import com.ecommerceshoe.model.Order;
  */
 @WebServlet("/StatusChange")
 public class StatusChangeController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-   
-    public StatusChangeController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		 HttpSession session=request.getSession();
-		 int orderid=Integer.parseInt(request.getParameter("orderId"));
-		 OrderDaoImpl orderdao=new OrderDaoImpl();
-		Boolean b= orderdao.statuschange(orderid);
-		List<Order> orderList=orderdao.ShowOrder();
-		session.setAttribute("order",orderList);
-		if(b) {
-		 response.sendRedirect("statusChange.jsp");
-		}
+		HttpSession session = request.getSession();
+		int orderid = Integer.parseInt(request.getParameter("orderId"));
+		OrderDaoImpl orderdao = new OrderDaoImpl();
+		Boolean b = orderdao.statuschange(orderid);
+		List<Order> orderList = orderdao.ShowOrder();
+		session.setAttribute("order", orderList);
+		if (b) {
+			response.sendRedirect("statusChange.jsp");
 		}
 	}
-
-	
-
+}

@@ -68,7 +68,7 @@ li a:hover:not(.active) {
 </style>
 </head>
 <body style="background-color: pink">
-	<form action="deleteProductController" method="post"></form>
+
 	<div>
 		<h1 style="text-align: center">ShowProduct</h1>
 		<div>
@@ -91,13 +91,9 @@ li a:hover:not(.active) {
 					<th>color</th>
 					<th>price</th>
 					<th>manufactureDate</th>
+					<th>Status</th>
 				</tr>
-				<%-- 	<%
-				ProductDaoImpl productdao = new ProductDaoImpl();
-				List<Product> ProductList = productdao.showProduct();
 
-				for (int i = 0; i < ProductList.size(); i++) {
-				%> --%>
 				<c:forEach items="${sessionScope.Product}" var="productList">
 					<tr>
 						<td>${productList.getProductId()}</td>
@@ -110,24 +106,12 @@ li a:hover:not(.active) {
 								value="${productList.getManufactureDate()}" pattern="yyyy-MM-dd"
 								var="macthDate" type="date" /> <fmt:formatDate
 								pattern="dd/MM/yyyy" value="${macthDate}" /></td>
-
+						<td>${productList.getStatus()}</td>
 						<td><a
-							href="deleteProduct.jsp?prodId=${ productList.getProductId()}"><button>
-									<strong>Delete</strong>
-								</button></a></td>
+							href="changeProductStatus.jsp?proId=${productList.getProductId()}&bName=${productList.getBrandName()}&bType=${productList.getBrandType()}&bSize=${productList.getBrandSize()}&color=${productList.getColor()}&prices=${productList.getPrices()}"><button>Edit</button></a></td>
+
 					</tr>
 				</c:forEach>
-				<%-- 	<%
-				}
-				%> --%>
-
-			</table>
-			<%-- <%
-			int proId = Integer.parseInt(request.getParameter("prodId"));
-			productdao.delete(proId);
-			% --%>
-			>
-
 		</div>
 
 	</div>

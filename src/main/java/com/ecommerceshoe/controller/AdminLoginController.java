@@ -16,21 +16,8 @@ import com.ecommerceshoe.model.Admin;
  */
 @WebServlet("/AdminLoginController")
 public class AdminLoginController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
-	public AdminLoginController() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
-
 		String email = req.getParameter("Email");
 		String password = req.getParameter("pass");
 		Admin admin = new Admin(email, password);

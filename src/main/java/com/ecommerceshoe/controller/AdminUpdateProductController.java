@@ -20,14 +20,15 @@ import com.ecommerceshoe.model.Product;
 @WebServlet("/adminupdatecontroller")
 public class AdminUpdateProductController extends HttpServlet {
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 HttpSession session=request.getSession();
-		ProductDaoImpl productdao=new ProductDaoImpl();
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		ProductDaoImpl productdao = new ProductDaoImpl();
 		List<Product> ProductList = productdao.showProduct();
 		session.setAttribute("Product", ProductList);
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("updateProduct.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("updateProduct.jsp");
 		requestDispatcher.forward(request, response);
-		
+
 	}
 
 }

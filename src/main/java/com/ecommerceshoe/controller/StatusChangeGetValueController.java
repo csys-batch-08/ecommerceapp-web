@@ -20,12 +20,13 @@ import com.ecommerceshoe.model.Order;
 @WebServlet("/statuschangegetvalue")
 public class StatusChangeGetValueController extends HttpServlet {
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 HttpSession session=request.getSession();
-		OrderDaoImpl orderdao=new OrderDaoImpl();
-		List<Order> orderList=orderdao.ShowOrder();
-		session.setAttribute("order",orderList);
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("statusChange.jsp");
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		OrderDaoImpl orderdao = new OrderDaoImpl();
+		List<Order> orderList = orderdao.ShowOrder();
+		session.setAttribute("order", orderList);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("statusChange.jsp");
 		requestDispatcher.forward(request, response);
 	}
 }

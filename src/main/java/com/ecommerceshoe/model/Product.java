@@ -2,7 +2,6 @@ package com.ecommerceshoe.model;
 
 import java.util.Date;
 
-
 public class Product {
 	private int productId;
 	private String brandName;
@@ -11,7 +10,7 @@ public class Product {
 	private String color;
 	private double prices;
 	private Date manufactureDate;
-	
+	private String status;
 
 	public int getProductId() {
 		return productId;
@@ -68,7 +67,14 @@ public class Product {
 	public void setManufactureDate(Date manufactureDate) {
 		this.manufactureDate = manufactureDate;
 	}
-	
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	public Product(String brandName, String brandType, int brandSize, String color, double prices,
 			Date manufactureDate) {
@@ -83,23 +89,23 @@ public class Product {
 
 	}
 
-
 	public Product(int int1, String string, String string2, int int2, String string3, double double1,
 			java.sql.Date date) {
-		this.productId=int1;
-		this.brandName=string;
-		this.brandType=string2;
-		this.brandSize=int2;
-		this.color=string3;
-		this.prices=double1;
-		this.manufactureDate=date;
-	
+		this.productId = int1;
+		this.brandName = string;
+		this.brandType = string2;
+		this.brandSize = int2;
+		this.color = string3;
+		this.prices = double1;
+		this.manufactureDate = date;
+
 	}
-	public Product(String string4,String string5,int int5,String string6) {
-		this.brandName=string4;
-		this.brandType=string5;
-		this.brandSize=int5;
-		this.color=string6;
+
+	public Product(String string4, String string5, int int5, String string6) {
+		this.brandName = string4;
+		this.brandType = string5;
+		this.brandSize = int5;
+		this.color = string6;
 	}
 
 	@Override
@@ -107,6 +113,5 @@ public class Product {
 		return "Product [brandName=" + brandName + ", brandType=" + brandType + ", brandSize=" + brandSize + ", color="
 				+ color + ", prices=" + prices + ", manufactureDate=" + manufactureDate + "]";
 	}
-
 
 }

@@ -11,6 +11,39 @@
 <meta charset="ISO-8859-1">
 <title>Calculate Price</title>
 <style>
+#login{
+position:absolute;
+top:50px;
+left:20px;
+
+}
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover:not(.active) {
+	background-color: red;
+}
+
+.active {
+	background-color: #04AA6D;
+}
 label {
 	width: 80px;
 	display: inline-block;
@@ -37,7 +70,7 @@ form {
 	border-radius: 30px;
 	border-left: 1px solid;
 	border-left: 1px solid rgba(255, 255, 255, .3);
-	position: absolute;
+	position:absolute;
 	top: 1%;
 	left: 35%;
 }
@@ -80,6 +113,7 @@ button {
 }
 
 #prod th {
+
 	padding-top: 12px;
 	padding-bottom: 12px;
 	text-align: center;
@@ -90,7 +124,19 @@ button {
 </head>
 
 <body>
+	<div id="login">
+           <ul>
+
+
+				<li><a href="welcomeAdmin.jsp">Admin</a></li>
+
+				<li style="float: right;"><a href="index.jsp"> LogOut</a></li>
+
+			</ul>
+			<br><br>
+			</div>
 	<table id="prod">
+		
 		<tr>
 			<th>ProductId</th>
 			<th>TotalSales</th>
@@ -105,8 +151,10 @@ button {
 		</c:forEach>
 
 	</table>
+
 	<form action="CalculatePriceController">
 		<h2>CALCULATING SALES</h2>
+	
 		<div id="date">
 			<label for="fromdate">FromDate:</label> <input type="date"
 				name="fromDate" id="fromdate" required><br> <br> <label

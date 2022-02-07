@@ -20,7 +20,7 @@
 			<tr>
 
 
-				<td><img src="${ searchpro.getColor()}.jpg" alt="img"
+				<td><img src="assets/images/${ searchpro.getColor()}.jpg" alt="img"
 					width=300px height=300px><br></td>
 				<td>
 					<h3>BrandName: ${ searchpro.getBrandName()}</h3>

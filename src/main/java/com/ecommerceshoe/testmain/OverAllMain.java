@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 import com.ecommerceshoe.daoimpl.AdminDaoImpl;
 import com.ecommerceshoe.daoimpl.CartDaoImpl;
-import com.ecommerceshoe.daoimpl.InvoiceDaoImpl;
+
 import com.ecommerceshoe.daoimpl.OrderDaoImpl;
 import com.ecommerceshoe.daoimpl.ProductDaoImpl;
 import com.ecommerceshoe.daoimpl.UserDaoImpl;
@@ -358,25 +358,9 @@ public class OverAllMain {
 				userDao.Walletupdate(amountPrice, user);
 				System.out.println("Order Successfull");
 
-				InvoiceDaoImpl invoicedao = new InvoiceDaoImpl();
-				ResultSet rs = invoicedao.showBill(user);
-				System.out.println("InvoiceBill");
-				System.out.format("%-15s%-15s%-15s%-15s%-15s%-15s%-15s%-15s\n", "userName", "mobileno", "email",
-						"address", "productid", "quantity", "price", "date");
-				System.out.println(
-						"--------------------------------------------------------------------------------------------------------------------------------------");
-				try {
-					while (rs.next()) {
-						System.out.format("%-15s%-15s%-15s%-15s%-15s%-15s%-15s%-15s\n", rs.getString(1), rs.getLong(2),
-								rs.getString(3), rs.getString(4), rs.getInt(5), rs.getInt(6), rs.getDouble(7),
-								rs.getDate(8));
-
-					}
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
+			
+			
+			
 				// System.out.println("Wallet recharge successfull");
 
 				System.out.println("Recharge here wallet");

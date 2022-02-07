@@ -7,20 +7,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ConnectionUtil {
-	public static Connection getDbconnection() {
+	public static  Connection getDbconnection() {
 		Connection con = null;
 
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 
 		try {
 			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "oracle");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+	
 			e.printStackTrace();
 		}
 		return con;

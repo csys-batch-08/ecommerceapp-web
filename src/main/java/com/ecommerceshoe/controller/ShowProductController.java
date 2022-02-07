@@ -27,7 +27,7 @@ public class ShowProductController extends HttpServlet {
 		String name=user.getName();
 		UserDaoImpl userDao=new UserDaoImpl();
 		ProductDaoImpl productDao = new ProductDaoImpl();
-		List<Product> ProductList = productDao.showProduct();
+		List<Product> ProductList = productDao.showUserProduct();
 		session.setAttribute("wallet", wallet);
 		session.setAttribute("name", name );
 		session.setAttribute("product", ProductList);

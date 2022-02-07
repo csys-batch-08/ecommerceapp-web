@@ -21,7 +21,6 @@ import com.ecommerceshoe.model.Order;
 import com.ecommerceshoe.model.Product;
 import com.ecommerceshoe.model.Users;
 
-
 @WebServlet("/orderProductController")
 public class orderProductController extends HttpServlet {
 
@@ -39,7 +38,7 @@ public class orderProductController extends HttpServlet {
 				UserDaoImpl userdao = new UserDaoImpl();
 
 				int i = userdao.Walletupdate(price, user);
-			session.setAttribute("wallet", user.getWallet());
+				session.setAttribute("wallet", user.getWallet());
 				i = orderdao.insertOrder(order);
 				if (i != 0) {
 					resp.sendRedirect("showorder");
@@ -55,8 +54,6 @@ public class orderProductController extends HttpServlet {
 			session1.setAttribute("balance", e.getMessage());
 			resp.sendRedirect("showPro.jsp");
 		}
-
-		
 
 	}
 }

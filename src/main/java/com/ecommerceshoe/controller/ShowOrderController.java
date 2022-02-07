@@ -18,20 +18,17 @@ import com.ecommerceshoe.model.Users;
 @WebServlet("/showorder")
 public class ShowOrderController extends HttpServlet {
 
-       
-   
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		HttpSession session=request.getSession();
-		 Users user=(Users)session.getAttribute("CurrentUser");
-		OrderDaoImpl orderdao=new OrderDaoImpl();
-		List<Order> OrderList=orderdao.ShowOrder(user);
-	
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		HttpSession session = request.getSession();
+		Users user = (Users) session.getAttribute("CurrentUser");
+		OrderDaoImpl orderdao = new OrderDaoImpl();
+		List<Order> OrderList = orderdao.ShowOrder(user);
 		session.setAttribute("order", OrderList);
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("showOrder.jsp");
-	     requestDispatcher.forward(request, response);
-		
-	}
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("showOrder.jsp");
+		requestDispatcher.forward(request, response);
 
 	}
 
+}

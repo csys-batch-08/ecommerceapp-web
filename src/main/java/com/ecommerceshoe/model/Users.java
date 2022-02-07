@@ -11,7 +11,6 @@ public class Users {
 	private String Address;
 	private Double wallet;
 
-	
 	public int getUserid() {
 		return userid;
 	}
@@ -59,7 +58,6 @@ public class Users {
 	public void setAddress(String address) {
 		Address = address;
 	}
-	
 
 	public Double getWallet() {
 		return wallet;
@@ -69,43 +67,41 @@ public class Users {
 		this.wallet = wallet;
 	}
 
-	public Users(String name, String password, Long mobileNo, String email, String address,double wallet) {
+	public Users(String name, String password, Long mobileNo, String email, String address, double wallet) {
 		super();
 		Name = name;
 		this.password = password;
 		this.mobileNo = mobileNo;
 		this.email = email;
 		this.Address = address;
-		this.wallet=wallet;
+		this.wallet = wallet;
 	}
-	public Users(int userid, String name, String password, Long mobileNo, String email, String address,double wallet) {
+
+	public Users(int userid, String name, String password, Long mobileNo, String email, String address, double wallet) {
 		super();
-		this.userid=userid;
+		this.userid = userid;
 		this.Name = name;
 		this.password = password;
 		this.mobileNo = mobileNo;
 		this.email = email;
 		this.Address = address;
-		this.wallet=wallet;
+		this.wallet = wallet;
 	}
+
 	public Users(String email) {
 		super();
 		this.email = email;
 	}
-	
+
 	public Users() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
-
 	@Override
 	public String toString() {
 		return "Users [Name=" + Name + ", password=" + password + ", mobileNo=" + mobileNo + ", email=" + email
-				+ ", Address=" + Address + ",wallet="+wallet+"]";
+				+ ", Address=" + Address + ",wallet=" + wallet + "]";
 	}
 
-	
 }

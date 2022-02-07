@@ -20,28 +20,27 @@ import com.ecommerceshoe.model.Users;
  */
 @WebServlet("/ordergetvalue")
 public class OrderProductGetValueController extends HttpServlet {
-	
 
-	
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 HttpSession session=request.getSession();
-		Users user=(Users)session.getAttribute("CurrentUser");	
-UserDaoImpl userDaoImpl = new UserDaoImpl();
-String bname = request.getParameter("brandname");
-String btype = request.getParameter("btype");
-int bsize = Integer.parseInt(request.getParameter("bsize"));
-String color = request.getParameter("color");
- int userid=userDaoImpl.findUserID(user);
- user.setUserid(userid);
- ProductDaoImpl productdao=new ProductDaoImpl();
- Product product=new Product(bname,btype,bsize,color);
- int productId = productdao.findProductId(product);
- double price=productdao.findPrice(product);
- session.setAttribute("currentproduct", product);
-session.setAttribute("proid", productId);
-session.setAttribute("Price", price);
-RequestDispatcher requestDispatcher=request.getRequestDispatcher("orderPro.jsp");
-requestDispatcher.forward(request, response);
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		Users user = (Users) session.getAttribute("CurrentUser");
+		UserDaoImpl userDaoImpl = new UserDaoImpl();
+		String bname = request.getParameter("brandname");
+		String btype = request.getParameter("btype");
+		int bsize = Integer.parseInt(request.getParameter("bsize"));
+		String color = request.getParameter("color");
+		int userid = userDaoImpl.findUserID(user);
+		user.setUserid(userid);
+		ProductDaoImpl productdao = new ProductDaoImpl();
+		Product product = new Product(bname, btype, bsize, color);
+		int productId = productdao.findProductId(product);
+		double price = productdao.findPrice(product);
+		session.setAttribute("currentproduct", product);
+		session.setAttribute("proid", productId);
+		session.setAttribute("Price", price);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("orderPro.jsp");
+		requestDispatcher.forward(request, response);
 	}
 
 }

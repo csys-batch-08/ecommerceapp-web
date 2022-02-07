@@ -62,7 +62,7 @@ public class ProductDaoImpl implements ProductDao {
 			i1 = preparedstatement.executeUpdate();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} finally {
 			ConnectionUtil.close(connection, preparedstatement, resultset);
@@ -71,21 +71,32 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	public int delete(int productId) {
-
-		String deleteQuery = "delete from  Product where products_id=?";
+		String query = "select status from  Product where products_id=?";
+		String deleteQuery = null;
+		;
 		Connection connection = null;
 		PreparedStatement preparedstatement = null;
+		String status = null;
 		int i2 = 0;
 		ResultSet resultset = null;
 		try {
 			connection = ConnectionUtil.getDbconnection();
+			preparedstatement = connection.prepareStatement(query);
+			preparedstatement.setInt(1, productId);
+			resultset = preparedstatement.executeQuery();
+			while (resultset.next()) {
+				status = resultset.getString("status");
+			}
+			if (status != null && status.equalsIgnoreCase("available")) {
+				deleteQuery = "update Product set status='unavailable' where products_id=?";
+			} else {
+				deleteQuery = "update Product set status='available' where products_id=?";
+			}
 			preparedstatement = connection.prepareStatement(deleteQuery);
-
 			preparedstatement.setInt(1, productId);
 			i2 = preparedstatement.executeUpdate();
-
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} finally {
 			ConnectionUtil.close(connection, preparedstatement, resultset);
@@ -95,7 +106,7 @@ public class ProductDaoImpl implements ProductDao {
 
 	public List<Product> showProduct() {
 		List<Product> productsList = new ArrayList<Product>();
-		String showQuery = "select products_id,Brand_name,Brand_type,Brand_size,color,prices,manufacture_date from Product";
+		String showQuery = "select products_id,Brand_name,Brand_type,Brand_size,color,prices,manufacture_date,status from Product";
 		ConnectionUtil conUtil = new ConnectionUtil();
 		Connection connection = ConnectionUtil.getDbconnection();
 		PreparedStatement preparedstatement = null;
@@ -107,10 +118,11 @@ public class ProductDaoImpl implements ProductDao {
 			while (resultset.next()) {
 				products = new Product(resultset.getInt(1), resultset.getString(2), resultset.getString(3),
 						resultset.getInt(4), resultset.getString(5), resultset.getDouble(6), resultset.getDate(7));
+				products.setStatus(resultset.getString(8));
 				productsList.add(products);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} finally {
 			ConnectionUtil.close(connection, preparedstatement, resultset);
@@ -166,7 +178,7 @@ public class ProductDaoImpl implements ProductDao {
 				price = resultset.getInt(1);
 			}
 
-		} catch (SQLException e1) { // TODO Auto-generated catch block
+		} catch (SQLException e1) { 
 			e1.printStackTrace();
 		} finally {
 			ConnectionUtil.close(connection, preparedstatement, resultset);
@@ -176,14 +188,14 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	public Product findProduct(String proName, String proType, int bdSize, String colorName) {
-		String Query = "select products_id,Brand_name,Brand_type,Brand_size,color,prices,manufacture_date from Product where Brand_name=? and Brand_type=? and Brand_size=? and color=? ";
+		String query = "select products_id,Brand_name,Brand_type,Brand_size,color,prices,manufacture_date from Product where Brand_name=? and Brand_type=? and Brand_size=? and color=? ";
 		ConnectionUtil conUtil = new ConnectionUtil();
 		Connection connection = ConnectionUtil.getDbconnection();
 		PreparedStatement preparedstatement = null;
 		Product product = null;
 		ResultSet resultset = null;
 		try {
-			preparedstatement = connection.prepareStatement(Query);
+			preparedstatement = connection.prepareStatement(query);
 			preparedstatement.setString(1, proName);
 			preparedstatement.setString(2, proType);
 			preparedstatement.setInt(3, bdSize);
@@ -196,7 +208,7 @@ public class ProductDaoImpl implements ProductDao {
 			}
 
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
+
 			e1.printStackTrace();
 		} finally {
 			ConnectionUtil.close(connection, preparedstatement, resultset);
@@ -207,12 +219,12 @@ public class ProductDaoImpl implements ProductDao {
 	public Product findProduct(int id) {
 		ConnectionUtil conUtil = new ConnectionUtil();
 		Connection connection = ConnectionUtil.getDbconnection();
-		String Query = "select products_id,Brand_name,Brand_type,Brand_size,color,prices,manufacture_date from Product where products_id= ?";
+		String query = "select products_id,Brand_name,Brand_type,Brand_size,color,prices,manufacture_date from Product where products_id= ?";
 		Product product = null;
 		PreparedStatement preparedstatement = null;
 		ResultSet resultset = null;
 		try {
-			preparedstatement = connection.prepareStatement(Query);
+			preparedstatement = connection.prepareStatement(query);
 			preparedstatement.setInt(1, id);
 			resultset = preparedstatement.executeQuery();
 			while (resultset.next()) {
@@ -220,7 +232,7 @@ public class ProductDaoImpl implements ProductDao {
 						resultset.getInt(4), resultset.getString(5), resultset.getDouble(6), resultset.getDate(7));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} finally {
 			ConnectionUtil.close(connection, preparedstatement, resultset);
@@ -232,9 +244,9 @@ public class ProductDaoImpl implements ProductDao {
 		List<Product> SizeList = new ArrayList<Product>();
 
 		Product product = null;
-		String showQuery = "select products_id,Brand_name,Brand_type,Brand_size,color,prices,manufacture_date from Product where Brand_name like'%"
+		String showQuery = "select products_id,Brand_name,Brand_type,Brand_size,color,prices,manufacture_date,status from Product where Brand_name like'%"
 				+ search + "%' or Brand_type like'%" + search + "%' or Brand_size like'%" + search
-				+ "%' or color like'%" + search + "%' ";
+				+ "%' or color like'%" + search + "%' and status='available' ";
 		ConnectionUtil conUtil = new ConnectionUtil();
 		Connection connection = ConnectionUtil.getDbconnection();
 		PreparedStatement preparedstatement = null;
@@ -245,10 +257,11 @@ public class ProductDaoImpl implements ProductDao {
 			while (resultset.next()) {
 				product = new Product(resultset.getString(2), resultset.getString(3), resultset.getInt(4),
 						resultset.getString(5), resultset.getDouble(6), resultset.getDate(7));
+				product.setStatus(resultset.getString(8));
 				SizeList.add(product);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} finally {
 			ConnectionUtil.close(connection, preparedstatement, resultset);
@@ -274,13 +287,39 @@ public class ProductDaoImpl implements ProductDao {
 				productsList.add(products);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} finally {
 			ConnectionUtil.close(connection, preparedstatement, resultset);
 		}
 		return productsList;
 
+	}
+
+	public List<Product> showUserProduct() {
+		List<Product> productsList = new ArrayList<Product>();
+		String showQuery = "select products_id,Brand_name,Brand_type,Brand_size,color,prices,manufacture_date,status from Product where status='available'";
+		ConnectionUtil conUtil = new ConnectionUtil();
+		Connection connection = ConnectionUtil.getDbconnection();
+		PreparedStatement preparedstatement = null;
+		ResultSet resultset = null;
+		Product products = null;
+		try {
+			preparedstatement = connection.prepareStatement(showQuery);
+			resultset = preparedstatement.executeQuery();
+			while (resultset.next()) {
+				products = new Product(resultset.getInt(1), resultset.getString(2), resultset.getString(3),
+						resultset.getInt(4), resultset.getString(5), resultset.getDouble(6), resultset.getDate(7));
+				products.setStatus(resultset.getString(8));
+				productsList.add(products);
+			}
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(connection, preparedstatement, resultset);
+		}
+		return productsList;
 	}
 
 }

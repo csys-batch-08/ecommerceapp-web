@@ -21,16 +21,16 @@ import com.ecommerceshoe.model.cart;
 @WebServlet("/showcart")
 public class ShowCartController extends HttpServlet {
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session=request.getSession();
-		CartDaoImpl cartdao=new CartDaoImpl();
-	   Users user=(Users)session.getAttribute("CurrentUser");
-	   List<cart> cartList=cartdao.showCart(user);
-	   session.setAttribute("cart", cartList);
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("showCartJsp.jsp");
-	     requestDispatcher.forward(request, response);
-		
-	}
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		CartDaoImpl cartdao = new CartDaoImpl();
+		Users user = (Users) session.getAttribute("CurrentUser");
+		List<cart> cartList = cartdao.showCart(user);
+		session.setAttribute("cart", cartList);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("showCartJsp.jsp");
+		requestDispatcher.forward(request, response);
 
+	}
 
 }

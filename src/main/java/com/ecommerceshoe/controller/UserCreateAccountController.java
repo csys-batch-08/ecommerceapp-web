@@ -15,22 +15,9 @@ import com.ecommerceshoe.model.Users;
  */
 @WebServlet("/UserCreateAccountController")
 public class UserCreateAccountController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
-	public UserCreateAccountController() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		String name = req.getParameter("name");
 		String password = req.getParameter("pass");
 		long mobileno = Long.parseLong(req.getParameter("num"));
@@ -41,10 +28,8 @@ public class UserCreateAccountController extends HttpServlet {
 		userdao.inserUser(user);
 		if (user != null) {
 			resp.sendRedirect("index.jsp");
-			
-		}
-		else 
-		{
+
+		} else {
 			resp.sendRedirect("newUser.jsp");
 		}
 	}
