@@ -31,17 +31,17 @@
 			<h1>
 				<b>LOGIN</b>
 			</h1>
-			<label for="Email"> <b>Email-Id:</b></label> <input
-				type="email" name="UserEmail" id="mail" list="email" autofocus
+			<label for="Email"> <b>Email-Id:</b></label>
+			 <input type="email" name="UserEmail" id="mail" list="email" autofocus
 				required placeholder="abcd22@gmail.com"
 				pattern="[a-z][a-z0-9]+[@][a-z]+[.][a-z]+"><br> <br>
-			<label for="PASSWORD"> <b>Password:</b> <input
-				type="password" name="Userpass" id="Password" list="word"
+			<label for="PASSWORD"> 
+			<b>Password:</b> 
+			<input type="password" name="Userpass" id="Password" list="word"
 				pattern="[a-zA-Z0-9@#!.&]{8,16}" required><br> <br>
-
 			<div>
 				<button>
-					<strong>Login</strong>
+					<b>Login</b>
 				</button>
 				<a href="newUser.jsp"> createaccount?</a>
 			</div>

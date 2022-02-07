@@ -18,17 +18,15 @@ label {
 			<h1>
 				<b>ADMINLOGIN</b>
 			</h1>
-			<label for="Email"><strong>Email-id:</strong></label> <input
-				type="email" name="Email" id="mail" list="email" autofocus required
-				placeholder="abcd22@gmail.com"
-				pattern="[a-z][a-z0-9]+[@][a-z]+[.][a-z]+"><br> <br>
-			<label for="PASSWORD"><strong>Password:</strong></label> <input
-				type="password" name="pass" id="Password" list="word" required><br>
+			<label for="Email"><b>Email-id:</b></label>
+			 <input type="email" name="Email" id="mail" list="email" autofocus required placeholder="abcd22@gmail.com" pattern="[a-z][a-z0-9]+[@][a-z]+[.][a-z]+"><br> <br>
+			<label for="PASSWORD"><b>Password:</b></label> 
+			<input type="password" name="pass" id="Password" list="word" required><br>
 			<br>
 
 			<div>
 				<button>
-					<strong>Login</strong>
+					<b>Login</b>
 				</button>
 
 			</div>

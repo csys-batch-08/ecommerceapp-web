@@ -22,8 +22,7 @@ body {
 </style>
 </head>
 <body style="text-align: center;">
-	<form action="cartProductController" method="post"
-		onmouseover="check()">
+	<form action="cartProductController" method="post" onmouseover="check()">
 
 		<div>
 
@@ -31,11 +30,10 @@ body {
 				<STRONG>CART DETAILS</STRONG>
 			</h1>
 
-			<br> <label for="Quantity"><strong>Quantity:</strong></label> <input
-				type="number" name="quan" id="quantity" list="quantity" required><br>
-			<br> <label for="Price"><strong>Price:</strong></label> <input
-				type="number" name="pri" id="Price" list="pri" required><br>
-			<br>
+			<br> <label for="Quantity"><strong>Quantity:</strong></label>
+			 <input type="number" name="quan" id="quantity" list="quantity" required><br><br>
+			 <label for="Price"><strong>Price:</strong></label>
+			 <input type="number" name="pri" id="Price" list="pri" required><br><br>
 
 
 			<div>
