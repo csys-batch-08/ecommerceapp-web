@@ -19,6 +19,7 @@ import com.ecommerceshoe.model.Users;
 @WebServlet("/showproduct")
 public class ShowProductController extends HttpServlet {
 	
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session=request.getSession();
@@ -27,10 +28,10 @@ public class ShowProductController extends HttpServlet {
 		String name=user.getName();
 		UserDaoImpl userDao=new UserDaoImpl();
 		ProductDaoImpl productDao = new ProductDaoImpl();
-		List<Product> ProductList = productDao.showUserProduct();
+		List<Product> productList = productDao.showUserProduct();
 		session.setAttribute("wallet", wallet);
 		session.setAttribute("name", name );
-		session.setAttribute("product", ProductList);
+		session.setAttribute("product", productList);
 		RequestDispatcher requestDispatcher=request.getRequestDispatcher("showPro.jsp");
 	     requestDispatcher.forward(request, response);
 		

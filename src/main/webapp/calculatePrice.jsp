@@ -142,7 +142,7 @@ button {
 			<th>TotalSales</th>
 		</tr>
 
-		<c:forEach items="${sessionScope.List}" var="list">
+		<c:forEach items="${requestScope.List}" var="list">
 
 			<tr>
 				<td>${list.get(0)}</td>

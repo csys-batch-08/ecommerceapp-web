@@ -24,6 +24,7 @@ import com.ecommerceshoe.model.Users;
 @WebServlet("/cartProductController")
 public class cartProductController extends HttpServlet {
 
+	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		Users user = (Users) session.getAttribute("CurrentUser");
@@ -34,12 +35,16 @@ public class cartProductController extends HttpServlet {
 		cart cart = new cart(product, user, quantity, price);
 		UserDaoImpl userdao = new UserDaoImpl();
 		int i = cartdao.insertCart(cart);
+		try {
 		if (i != 0) {
 			resp.sendRedirect("showCartJsp.jsp");
 		} else {
 			resp.sendRedirect("cartPro.jsp");
 		}
-
+		}
+		catch(Exception e ) {
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -22,10 +22,9 @@ public class AdminUpdateProductController extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession();
 		ProductDaoImpl productdao = new ProductDaoImpl();
-		List<Product> ProductList = productdao.showProduct();
-		session.setAttribute("Product", ProductList);
+		List<Product> productList = productdao.showProduct();
+		request.setAttribute("Product", productList);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("updateProduct.jsp");
 		requestDispatcher.forward(request, response);
 

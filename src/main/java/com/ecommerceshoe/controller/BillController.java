@@ -21,15 +21,16 @@ import com.ecommerceshoe.model.Users;
 @WebServlet("/billcontroller")
 public class BillController extends HttpServlet {
 
-	protected void service(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+
+@Override
+protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException,NumberFormatException {
+	
 		HttpSession session = request.getSession();
-		int orderId = Integer.parseInt(request.getParameter("orderid"));
 		OrderDaoImpl orderdao = new OrderDaoImpl();
 		Users user = (Users) session.getAttribute("CurrentUser");
 		List<Order> orderList = orderdao.ShowBill(user);
-
-		session.setAttribute("order", orderList);
+		request.setAttribute("order", orderList);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("bill.jsp");
 		requestDispatcher.forward(request, response);
 

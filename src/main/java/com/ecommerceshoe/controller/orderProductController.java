@@ -37,7 +37,7 @@ public class orderProductController extends HttpServlet {
 			if (user.getWallet() > price) {
 				UserDaoImpl userdao = new UserDaoImpl();
 
-				int i = userdao.Walletupdate(price, user);
+				int i = userdao.Walletupdate(price,user);
 				session.setAttribute("wallet", user.getWallet());
 				i = orderdao.insertOrder(order);
 				if (i != 0) {

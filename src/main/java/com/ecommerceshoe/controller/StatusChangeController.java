@@ -21,7 +21,7 @@ public class StatusChangeController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 		HttpSession session = request.getSession();
 		int orderid = Integer.parseInt(request.getParameter("orderId"));
 		OrderDaoImpl orderdao = new OrderDaoImpl();

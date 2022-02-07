@@ -20,6 +20,7 @@ import com.ecommerceshoe.daoimpl.ProductDaoImpl;
 @WebServlet("/ProductController")
 public class ProductController extends HttpServlet {
 
+	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String brandName = req.getParameter("bname");
@@ -37,7 +38,8 @@ public class ProductController extends HttpServlet {
 			} else {
 				resp.sendRedirect("product.jsp");
 			}
-		} catch (ParseException e) {
+			
+		} catch (Exception e) {
 
 			e.printStackTrace();
 		}

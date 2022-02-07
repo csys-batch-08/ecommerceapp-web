@@ -21,9 +21,10 @@ import com.ecommerceshoe.daoimpl.OrderDaoImpl;
 @WebServlet("/CalculatePriceController")
 public class CalculatePriceController extends HttpServlet {
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			Date fromdate = sdf.parse(request.getParameter("fromDate"));
@@ -33,9 +34,10 @@ public class CalculatePriceController extends HttpServlet {
 			List<Object> list = orderDao.TotalAmount(fromdate, todate);
 			session.setAttribute("List", list);
 			response.sendRedirect("calculatePrice.jsp");
-		} catch (ParseException e) {
-			e.printStackTrace();
 		}
+			catch(Exception e) {
+				e.printStackTrace();
+			}		 
 	}
 
 }

@@ -6,8 +6,9 @@ public class ErrorFound extends Exception {
   {
 	return "insufficient balance";
 }
+  static final String MESSAGE="Email and Password Invalid";
   public String getMessage2()
   {
-	return "Email and Password Invalid";
+	return MESSAGE;
 }
 }

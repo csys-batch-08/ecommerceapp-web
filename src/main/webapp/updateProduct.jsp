@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>updateproduct</title>
+<title>updateProduct</title>
 <style>
 ul {
 	list-style-type: none;
@@ -88,7 +88,7 @@ label {
 				<br> <br>
 			</div>
 			<div>
-				<table id="prod">
+				<table aria-describedby="Update Product" id="prod">
 					<tr>
 						<th>productId</th>
 						<th>BrandName</th>
@@ -99,7 +99,7 @@ label {
 						<th>manufactureDate</th>
 					</tr>
 
-					<c:forEach items="${sessionScope.Product}" var="ProductList">
+					<c:forEach items="${requestScope.Product}" var="ProductList">
 						<tr>
 							<td>${ ProductList.getProductId() }</td>
 							<td>${ProductList.getBrandName()}</td>

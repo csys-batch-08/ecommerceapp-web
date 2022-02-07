@@ -20,6 +20,7 @@ import com.ecommerceshoe.model.Product;
 @WebServlet("/deleteproductgetvalue")
 public class DeleteProductGetValueController extends HttpServlet {
 
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();

@@ -44,7 +44,7 @@ form {
 		</div>
 		<div style="text-align: left; padding-left: 120px;">
 
-			<c:forEach items="${sessionScope.order}" var="order">
+			<c:forEach items="${requestScope.order}" var="order">
 				<h3>OrderId:${order.getOrderId() }</h3>
 				<h3>UserName:${order.getUser().getName() }</h3>
 				<h3>BrandName:${order.getProduct().getBrandName()}</h3>

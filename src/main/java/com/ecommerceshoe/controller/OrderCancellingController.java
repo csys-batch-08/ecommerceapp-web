@@ -27,8 +27,8 @@ public class OrderCancellingController extends HttpServlet {
 		HttpSession session = request.getSession();
 		OrderDaoImpl orderdao = new OrderDaoImpl();
 		Users user = (Users) session.getAttribute("CurrentUser");
-		List<Order> OrderList = orderdao.ShowOrder(user);
-		session.setAttribute("orderCancel", OrderList);
+		List<Order> orderList = orderdao.ShowOrder(user);
+		session.setAttribute("orderCancel", orderList);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("orderCancel.jsp");
 		requestDispatcher.forward(request, response);
 

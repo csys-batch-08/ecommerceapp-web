@@ -19,6 +19,7 @@ import com.ecommerceshoe.model.Product;
 @WebServlet("/deleteProductController")
 public class deleteProductController extends HttpServlet {
 
+	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int productid = Integer.parseInt(req.getParameter("proid"));
 		ProductDaoImpl productDao = new ProductDaoImpl();

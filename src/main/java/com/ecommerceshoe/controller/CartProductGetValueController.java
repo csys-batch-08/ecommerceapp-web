@@ -18,6 +18,7 @@ import com.ecommerceshoe.model.Users;
 @WebServlet("/cartgetvalue")
 public class CartProductGetValueController extends HttpServlet {
 
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -33,7 +34,7 @@ public class CartProductGetValueController extends HttpServlet {
 		Product product = new Product(bname, btype, bsize, color);
 		int productId = productdao.findProductId(product);
 		double price = productdao.findPrice(product);
-		session.setAttribute("currentproduct", product);
+		request.setAttribute("currentproduct", product);
 		session.setAttribute("proid", productId);
 		session.setAttribute("Price", price);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("cartPro.jsp");

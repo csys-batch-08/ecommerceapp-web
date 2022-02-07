@@ -22,7 +22,7 @@ public class SearchProductController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	
 		String search = request.getParameter("search");
 		ProductDaoImpl productdao = new ProductDaoImpl();
 		List<Product> listproduct = productdao.filterSize(search);

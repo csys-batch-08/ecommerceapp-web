@@ -4,12 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.ecommerceshoe.Dao.CartDao;
-import com.ecommerceshoe.model.Order;
 import com.ecommerceshoe.model.Product;
 import com.ecommerceshoe.model.Users;
 import com.ecommerceshoe.model.cart;
@@ -18,8 +15,7 @@ import com.ecommerceshoe.util.ConnectionUtil;
 public class CartDaoImpl implements CartDao {
 	public int insertCart(cart carts) {
 		String cartQuery = "insert into Cart_details(User_id,products_id,quantity,price) values (?,?,?,?)";
-		ConnectionUtil connectionUtil = new ConnectionUtil();
-		Connection connection = connectionUtil.getDbconnection();
+		Connection connection = ConnectionUtil.getDbconnection();
 		PreparedStatement preparedstatement = null;
 		int i = 0;
 		ResultSet resultset = null;
@@ -35,9 +31,7 @@ public class CartDaoImpl implements CartDao {
 			preparedstatement.setDouble(4, carts.getPrice());
 			i = preparedstatement.executeUpdate();
 		} catch (SQLException e) {
-			// catch the exception and get that message
 			e.printStackTrace();
-			System.out.println("Value not Setted in the query");
 		} finally {
 			ConnectionUtil.close(connection, preparedstatement, resultset);
 		}
@@ -45,9 +39,8 @@ public class CartDaoImpl implements CartDao {
 	}
 
 	public List<cart> showCart(Users user) {
-		List<cart> cartList = new ArrayList<cart>();
+		List<cart> cartList = new ArrayList<>();
 		String showQuery = "select Cartitems_id,products_id,User_id,quantity,price from  Cart_details  where User_id=? ";
-		ConnectionUtil connectionUtil = new ConnectionUtil();
 		Connection connection = ConnectionUtil.getDbconnection();
 		PreparedStatement preparedstatement = null;
 		cart carts = null;
@@ -59,7 +52,7 @@ public class CartDaoImpl implements CartDao {
 			ProductDaoImpl productdao = new ProductDaoImpl();
 			resultset = preparedstatement.executeQuery();
 			while (resultset.next()) {
-				Users user1 = userdao.findUserId(resultset.getInt(3));
+				Users users = userdao.findUserId(resultset.getInt(3));
 				Product product = productdao.findProduct(resultset.getInt(2));
 				carts = new cart(product, user, resultset.getInt(4), resultset.getDouble(5));
 				cartList.add(carts);
