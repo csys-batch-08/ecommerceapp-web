@@ -118,7 +118,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	public int updateuserWallet(Users user, double amount) {
-		ConnectionUtil conUtil = new ConnectionUtil();
+	
 		Connection connection = ConnectionUtil.getDbconnection();
 		String query = "update users1 set wallet=wallet+? where email_id=?";
 		PreparedStatement preparedstatement = null;
@@ -139,7 +139,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	public int Walletupdate(double OrderPrices, Users user) {
-		ConnectionUtil conUtil = new ConnectionUtil();
+		
 		Connection connection = ConnectionUtil.getDbconnection();
 		String query = "update users1 set wallet=wallet-? where email_id=?";
 		String getWalletquery = "select wallet from users1 where email_id=?";

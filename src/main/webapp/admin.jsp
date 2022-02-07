@@ -16,17 +16,17 @@ label {
 	<form action="AdminController1" method="post">
 		<div style="text-align: center">
 			<h1>
-				<b>ADMINLOGIN</b>
+				<strong>ADMINLOGIN</strong>
 			</h1>
-			<label for="Email"><b>Email-id:</b></label>
+			<label for="Email"><strong>Email-id:</strong></label>
 			 <input type="email" name="Email" id="mail" list="email" autofocus required placeholder="abcd22@gmail.com" pattern="[a-z][a-z0-9]+[@][a-z]+[.][a-z]+"><br> <br>
-			<label for="PASSWORD"><b>Password:</b></label> 
+			<label for="PASSWORD"><strong>Password:</strong></label> 
 			<input type="password" name="pass" id="Password" list="word" required><br>
 			<br>
 
 			<div>
 				<button>
-					<b>Login</b>
+					<strong>Login</strong>
 				</button>
 
 			</div>
