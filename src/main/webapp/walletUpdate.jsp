@@ -46,7 +46,7 @@ li a:hover:not(.active) {
 	<form action="UpdateWalletController">
 		<div style="text-align: center">
 			<h1>
-				<b>WalletUpdate</b>
+				<strong>WalletUpdate</strong>
 			</h1>
 			<div>
 				<ul>

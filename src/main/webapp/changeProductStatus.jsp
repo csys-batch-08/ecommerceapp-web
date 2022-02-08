@@ -8,8 +8,8 @@
 <title>Status change Product</title>
 <style>
 body {
-	height: 100vh;
-	width: 100%;
+	height: 90vh;
+	width: 98%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -32,14 +32,15 @@ form {
 </style>
 </head>
 <body>
-
+<table>
 <c:set var="proId" value="${param.proId}" />
 <c:set var="bName" value="${param.bName}" />
 <c:set var="bType" value="${param.bType}" />
 <c:set var="bSize" value="${param.bSize}" />
 <c:set var="color" value="${param.color}" />
 <c:set var="prices" value="${param.prices}" />
-
+<tr>
+<td>
 <h3>productId:${proId}</h3>
 <h3>brandName:${bName}</h3>
 <h3>brandType:${bType}</h3>
@@ -48,7 +49,9 @@ form {
 <h3>prices:${prices}</h3>
 <h2>Do You Want To UpdateProduct?</h2>
 <a href="deleteProductController?proid=${proId}"><button>yes</button></a>
-<a href="deleteProduct.jsp">no</a>
-
+<a href="deleteProduct.jsp"><button>no</button></a>
+</td>
+</tr>
+</table>
 </body>
 </html>

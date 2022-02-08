@@ -11,10 +11,46 @@
 <meta charset="ISO-8859-1">
 <title>search</title>
 <style>
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover:not(.active) {
+	background-color: red;
+}
+
+.active {
+	background-color: #04AA6D;
+}
 </style>
 </head>
-<body>
+<body style="background: threedhighlight;">
+<div>
+<h1 style="text-align: center;">Searched Product</h1>
+<ul>
 
+
+			<li><a href="showPro.jsp">Home</a></li>
+
+
+		</ul>
+		</div>
 	<table>
 		<c:forEach items="${requestScope.search}" var="searchpro">
 			<tr>

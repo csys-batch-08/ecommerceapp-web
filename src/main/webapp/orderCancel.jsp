@@ -32,11 +32,11 @@ li a {
 }
 
 li a:hover:not(.active) {
-	background-color: #111;
+	background-color:red;
 }
 
 .active {
-	background-color: #04AA6D;
+	background-color: black;
 }
 
 #prod {

@@ -57,7 +57,7 @@ button {
 	<form action="UserCreateAccountController" method="post">
 		<div>
 			<h1>
-				<b>SIGNUP</b>
+				<strong>SIGNUP</strong>
 			</h1>
 
 

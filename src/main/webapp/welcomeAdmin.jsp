@@ -42,12 +42,15 @@ body {
 	height: 100vh;
 	color: white;
 }
+h1{
+text-align:center;
+}
 </style>
 </head>
 <body>
-	<marquee width="100%" direction="LEFT" height="100px" scrollamount="10">
+	
 		<h1 style="color: black;">WELCOME ADMIN</h1>
-	</marquee>
+	
 
 	<div>
 		<ul>

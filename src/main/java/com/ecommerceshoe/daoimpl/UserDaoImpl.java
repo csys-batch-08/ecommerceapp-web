@@ -19,9 +19,9 @@ import com.ecommerceshoe.util.ConnectionUtil;
 public class UserDaoImpl implements UserDao {
 
 	public int inserUser(Users user) {
-		ConnectionUtil conUtil = new ConnectionUtil();
+		ConnectionUtil connectionUtil = new ConnectionUtil();
 		String insertQuery = "insert into  users1(Name,password,mobile_no,email_id,Address,wallet) values(?,?,?,?,?,?)";
-		Connection connection = conUtil.getDbconnection();
+		Connection connection = connectionUtil.getDbconnection();
 		PreparedStatement preparedstatement = null;
 		ResultSet resultset = null;
 		int i = 0;
@@ -48,7 +48,6 @@ public class UserDaoImpl implements UserDao {
 
 	public Users validateUser(String email, String password) {
 		String validateQuery = "select user_id,Name, password,mobile_no, email_id ,Address,wallet from users1 where email_id = ? and password = ? ";
-		ConnectionUtil conUtil;
 		Connection connection = ConnectionUtil.getDbconnection();
 		PreparedStatement preparedstatement = null;
 		Users user = null;
@@ -95,7 +94,6 @@ public class UserDaoImpl implements UserDao {
 
 	public Users findUser(String email) {
 		String Query1 = "select  user_id,Name, password,mobile_no, email_id ,Address,wallet from Users1 where email_id= ?";
-		ConnectionUtil conUtil = new ConnectionUtil();
 		Connection connection = ConnectionUtil.getDbconnection();
 		PreparedStatement preparedstatement = null;
 		Users user = null;
@@ -117,8 +115,7 @@ public class UserDaoImpl implements UserDao {
 		return user;
 	}
 
-	public int updateuserWallet(Users user, double amount) {
-	
+	public int updateuserWallet(Users user, double amount) {	
 		Connection connection = ConnectionUtil.getDbconnection();
 		String query = "update users1 set wallet=wallet+? where email_id=?";
 		PreparedStatement preparedstatement = null;
@@ -138,8 +135,7 @@ public class UserDaoImpl implements UserDao {
 		return i;
 	}
 
-	public int Walletupdate(double OrderPrices, Users user) {
-		
+	public int Walletupdate(double OrderPrices, Users user) {	
 		Connection connection = ConnectionUtil.getDbconnection();
 		String query = "update users1 set wallet=wallet-? where email_id=?";
 		String getWalletquery = "select wallet from users1 where email_id=?";
@@ -174,7 +170,6 @@ public class UserDaoImpl implements UserDao {
 
 	public Users findUserId(int id) {
 		String query1 = "select  user_id,Name, password,mobile_no, email_id ,Address,wallet from Users1 where user_id= ? ";
-		ConnectionUtil conUtil = new ConnectionUtil();
 		Connection connection = ConnectionUtil.getDbconnection();
 		PreparedStatement preparedstatement = null;
 		Users user = null;
@@ -197,7 +192,6 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	public boolean RefundWallet(Users user, double price) {
-		ConnectionUtil conUtil = new ConnectionUtil();
 		Connection connection = ConnectionUtil.getDbconnection();
 		UserDaoImpl userdao = new UserDaoImpl();
 		int userId = userdao.findUserID(user);

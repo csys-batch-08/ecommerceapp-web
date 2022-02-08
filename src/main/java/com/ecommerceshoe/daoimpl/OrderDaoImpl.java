@@ -17,8 +17,8 @@ import com.ecommerceshoe.util.ConnectionUtil;
 
 public class OrderDaoImpl implements OrderDao {
 	public int insertOrder(Order orders) {
-		String orderQuery = "insert into Orders_details(User_id,products_id,Quantity,Price,order_date) values (?,?,?,?,sysdate) ";
-		
+		String orderQuery = "insert into Orders_details(User_id,products_id,Quantity,Price,order_date)"
+				+ " values (?,?,?,?,sysdate) ";
 		Connection connection = ConnectionUtil.getDbconnection();
 		PreparedStatement preparedstatement = null;
 		int i = 0;
@@ -45,10 +45,10 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	public List<Order> ShowOrder(Users user) {
-		
 		Connection connection = ConnectionUtil.getDbconnection();
 		List<Order> orderList = new ArrayList<>();
-		String query = "select Order_id,products_id,User_id, Quantity,Price,order_date,Status from Orders_details where User_id= ?";
+		String query = "select Order_id,products_id,User_id, Quantity,Price,order_date,Status from Orders_details "
+				+ "where User_id= ?";
 		PreparedStatement preparedstatement = null;
 		Order order = null;
 		ResultSet resultset = null;
@@ -94,7 +94,6 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	public List<Object> TotalAmount(Date fromDate, Date toDate) {
-		
 		Connection connection = ConnectionUtil.getDbconnection();
 		String query = "select products_id,sum(price) as price from  Orders_details where status='delivered' and order_date between ? and ? group BY products_id";
 		PreparedStatement preparedstatement = null;
@@ -123,7 +122,6 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	public List<Order> ShowOrder() {
-		
 		Connection connection = ConnectionUtil.getDbconnection();
 		List<Order> orderList = new ArrayList<Order>();
 		String query = "select  Order_id,products_id,User_id, Quantity,Price,order_date,Status from Orders_details";
@@ -153,7 +151,6 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	public boolean statuschange(int order_id) {
-		
 		Connection connection = ConnectionUtil.getDbconnection();
 		String query = "update Orders_details set status='delivered' where Order_id=? ";
 		PreparedStatement preparedstatement=null;
@@ -173,7 +170,6 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	public List<Order> ShowBill(Users user) {
-		
 		Connection connection =ConnectionUtil.getDbconnection();
 		List<Order> orderList = new ArrayList<>();
 		String query = "select  Order_id,products_id,User_id, Quantity,Price,order_date,Status from Orders_details where user_id=?  order by Order_id desc fetch first 1 row only";
