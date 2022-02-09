@@ -248,7 +248,7 @@ public class ProductDaoImpl implements ProductDao {
 		ResultSet resultset = null;
 		try {
 			preparedstatement = connection.prepareStatement(showQuery);
-			resultset = preparedstatement.executeQuery(showQuery);
+			resultset = preparedstatement.executeQuery();
 			while (resultset.next()) {
 				product = new Product(resultset.getString(2), resultset.getString(3), resultset.getInt(4),
 						resultset.getString(5), resultset.getDouble(6), resultset.getDate(7));
