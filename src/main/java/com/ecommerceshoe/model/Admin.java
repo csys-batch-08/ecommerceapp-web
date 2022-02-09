@@ -1,6 +1,8 @@
 package com.ecommerceshoe.model;
 
-public class Admin {
+import java.io.Serializable;
+
+public class Admin implements Serializable {
 	private String adminEmail;
 	private String password;
 

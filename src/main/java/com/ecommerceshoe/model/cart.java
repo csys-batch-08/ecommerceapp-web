@@ -1,6 +1,8 @@
 package com.ecommerceshoe.model;
 
-public class cart {
+import java.io.Serializable;
+
+public class cart implements Serializable {
 	private Product product;
 	private Users user;
 	private int quantity;

@@ -1,8 +1,9 @@
 package com.ecommerceshoe.model;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Users {
+public class Users implements Serializable {
 	private int userid;
 	private String Name;
 	private String password;
@@ -95,7 +96,6 @@ public class Users {
 
 	public Users() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

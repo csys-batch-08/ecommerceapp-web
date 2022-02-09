@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.ecommerceshoe.daoimpl.AdminDaoImpl;
 import com.ecommerceshoe.model.Admin;
 
-/**
- * Servlet implementation class AdminController
- */
+
 @WebServlet("/AdminLoginController")
 public class AdminLoginController extends HttpServlet {
 

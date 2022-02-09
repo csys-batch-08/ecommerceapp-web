@@ -1,8 +1,9 @@
 package com.ecommerceshoe.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Product {
+public class Product implements Serializable{
 	private int productId;
 	private String brandName;
 	private String brandType;
