@@ -68,21 +68,16 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	public int delete(int productId) {
-		String query = "select status from  Product where products_id=?";
 		String deleteQuery = null;
 		Connection connection = null;
 		PreparedStatement preparedstatement = null;
-		String status = null;
+		ProductDaoImpl productDao=new ProductDaoImpl();
+		String status=productDao.status(productId);
 		int i2 = 0;
 		ResultSet resultset = null;
 		try {
 			connection = ConnectionUtil.getDbconnection();
-			preparedstatement = connection.prepareStatement(query);
-			preparedstatement.setInt(1, productId);
-			resultset = preparedstatement.executeQuery();
-			while (resultset.next()) {
-				status = resultset.getString("status");
-			}
+			
 			if (status != null && status.equalsIgnoreCase("available")) {
 				deleteQuery = "update Product set status='unavailable' where products_id=?";
 			} else {
@@ -100,6 +95,31 @@ public class ProductDaoImpl implements ProductDao {
 		}
 		
 		return i2;
+	}
+	public String status(int productId ) {
+		String query = "select status from  Product where products_id=?";
+		Connection connection = null;
+		PreparedStatement preparedstatement = null;
+		ResultSet resultset = null;
+		String status = null;
+		try {
+			connection = ConnectionUtil.getDbconnection();
+			preparedstatement = connection.prepareStatement(query);
+			preparedstatement.setInt(1, productId);
+			resultset = preparedstatement.executeQuery();
+			while (resultset.next()) {
+				status = resultset.getString("status");
+			}
+		}
+		catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		finally {
+			ConnectionUtil.close(connection, preparedstatement, resultset);
+		}
+		return status;
+		
 	}
 
 	public List<Product> showProduct() {
