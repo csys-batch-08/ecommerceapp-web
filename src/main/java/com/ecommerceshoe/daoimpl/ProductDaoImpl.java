@@ -236,33 +236,25 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	public List<Product> filterSize(String search) {
-		List<Product> SizeList = new ArrayList<>();
+		List<Product> sizeList = new ArrayList<>();
 		Product product = null;
 		String showQuery = "select products_id,Brand_name,Brand_type,Brand_size,color,prices,manufacture_date,status from Product"
-				+ " where Brand_name like'%"
-				+ search + "%' or Brand_type like'%" + search + "%' or Brand_size like'%" + search
-				+ "%' or color like'%" + search + "%' and status='available' ";
-//		
-//		String showQuery = "select products_id,Brand_name,Brand_type,Brand_size,color,prices,manufacture_date,status from Product"
-//				+ " where status='available'"
-//				+ " where Brand_name like'%"
-//				+ search + "%' or Brand_type like'%" + search + "%' or Brand_size like'%" + search
-//				+ "%' or color like'%" + search + "%' and status='available' ";
-//		
-//		select jioplan_id,plan_name,price,validity,benefits,operator_id,status from jio_plans where status='Active' 
-//				and plan_name like ? or price like ?";
-	
+				+ " where  status='available' and Brand_name like ? or Brand_type like ? or Brand_size like ? or color like ?";
 		Connection connection = ConnectionUtil.getDbconnection();
 		PreparedStatement preparedstatement = null;
 		ResultSet resultset = null;
 		try {
 			preparedstatement = connection.prepareStatement(showQuery);
+			preparedstatement.setString(1, "%" + search + "%");
+			preparedstatement.setString(2, "%" + search + "%");
+			preparedstatement.setString(3, "%" + search + "%");
+			preparedstatement.setString(4, "%" + search + "%");
 			resultset = preparedstatement.executeQuery();
 			while (resultset.next()) {
 				product = new Product(resultset.getString(2), resultset.getString(3), resultset.getInt(4),
 						resultset.getString(5), resultset.getDouble(6), resultset.getDate(7));
 				product.setStatus(resultset.getString(8));
-				SizeList.add(product);
+				sizeList.add(product);
 			}
 		} catch (SQLException e) {
 
@@ -270,7 +262,7 @@ public class ProductDaoImpl implements ProductDao {
 		} finally {
 			ConnectionUtil.close(connection, preparedstatement, resultset);
 		}
-		return SizeList;
+		return sizeList;
 	}
 
 	public List<Product> showProduct(int productID) {

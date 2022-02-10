@@ -20,7 +20,7 @@ import com.ecommerceshoe.model.Admin;
 import com.ecommerceshoe.model.Order;
 import com.ecommerceshoe.model.Product;
 import com.ecommerceshoe.model.Users;
-import com.ecommerceshoe.model.cart;
+import com.ecommerceshoe.model.Cart;
 import com.ecommerceshoe.util.ConnectionUtil;
 
 public class OverAllMain {
@@ -416,7 +416,7 @@ public class OverAllMain {
 //			Date today=new Date();
 //			String TempDate1=sc.nextLine();
 //			 orderDate=sdf.parse(TempDate1);
-			cart carts = new cart(product1, user1, quantity);
+			Cart carts = new Cart(product1, user1, quantity);
 			CartDaoImpl cartDao1 = new CartDaoImpl();
 
 			cartDao1.insertCart(carts);
@@ -427,7 +427,7 @@ public class OverAllMain {
 
 		case 6:
 			CartDaoImpl cartDao11 = new CartDaoImpl();
-			List<cart> cartList = cartDao11.showCart(user);
+			List<Cart> cartList = cartDao11.showCart(user);
 			for (int j = 0; j < cartList.size(); j++) {
 				System.out.println(cartList.get(j));
 			}

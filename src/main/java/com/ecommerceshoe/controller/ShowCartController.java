@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.ecommerceshoe.daoimpl.CartDaoImpl;
 import com.ecommerceshoe.model.Users;
-import com.ecommerceshoe.model.cart;
+import com.ecommerceshoe.model.Cart;
 
 /**
  * Servlet implementation class ShowCartController
@@ -27,7 +27,7 @@ public class ShowCartController extends HttpServlet {
 		HttpSession session = request.getSession();
 		CartDaoImpl cartdao = new CartDaoImpl();
 		Users user = (Users) session.getAttribute("CurrentUser");
-		List<cart> cartList = cartdao.showCart(user);
+		List<Cart> cartList = cartdao.showCart(user);
 		request.setAttribute("cart", cartList);
 		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("showCartJsp.jsp");

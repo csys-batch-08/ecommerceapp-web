@@ -135,37 +135,57 @@ public class UserDaoImpl implements UserDao {
 		return i;
 	}
 
-	public int Walletupdate(double OrderPrices, Users user) {	
+	public int Walletupdate(double orderPrices, Users user) {	
 		Connection connection = ConnectionUtil.getDbconnection();
 		String query = "update users1 set wallet=wallet-? where email_id=?";
-		String getWalletquery = "select wallet from users1 where email_id=?";
-		String commit = "commit";
 		PreparedStatement preparedstatement = null;
-		
 		ResultSet resultset = null;
+		UserDaoImpl userDao=new UserDaoImpl();
+		double wallet=userDao.wallet(user);
 		int a = 0;
+		if(wallet > orderPrices ) {
+		try {
+			preparedstatement = connection.prepareStatement(query);
+			preparedstatement.setDouble(1, orderPrices);
+			preparedstatement.setString(2, user.getEmail());
+			a = preparedstatement.executeUpdate();
+			user.setWallet(user.getWallet() - orderPrices);
+			a = preparedstatement.executeUpdate();
+			
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} 
+		finally {
+			ConnectionUtil.close(connection, preparedstatement, resultset);
+		}
+		}
+		return a;
+	}
+	public double wallet(Users user) {
+		Connection connection = ConnectionUtil.getDbconnection();
+		String getWalletquery = "select wallet from users1 where email_id=?";
+	PreparedStatement preparedstatement = null;
+		ResultSet resultset = null;
+		
+		double wallet = 0;
 		try {
 			preparedstatement = connection.prepareStatement(getWalletquery);
 			preparedstatement.setString(1, user.getEmail());
 			resultset = preparedstatement.executeQuery();
-			double wallet = 0;
+			
+			
 			if (resultset.next()) {
 				wallet = resultset.getDouble(1);
-			}
-			preparedstatement = connection.prepareStatement(query);
-			preparedstatement.setDouble(1, OrderPrices);
-			preparedstatement.setString(2, user.getEmail());
-			a = preparedstatement.executeUpdate();
-			user.setWallet(user.getWallet() - OrderPrices);
-			preparedstatement = connection.prepareStatement(commit);
-			a = preparedstatement.executeUpdate();
-		} catch (SQLException e) {
+			}}
+			catch (SQLException e) {
 
-			e.printStackTrace();
-		} finally {
-			ConnectionUtil.close(connection, preparedstatement, resultset);
-		}
-		return a;
+				e.printStackTrace();
+			}
+			 finally {
+					ConnectionUtil.close(connection, preparedstatement, resultset);
+				}
+		return wallet;
 	}
 
 	public Users findUserId(int id) {

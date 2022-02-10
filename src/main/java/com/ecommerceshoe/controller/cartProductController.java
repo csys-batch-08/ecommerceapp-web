@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.ecommerceshoe.daoimpl.CartDaoImpl;
 import com.ecommerceshoe.daoimpl.UserDaoImpl;
-import com.ecommerceshoe.model.cart;
+import com.ecommerceshoe.model.Cart;
 import com.ecommerceshoe.model.Product;
 import com.ecommerceshoe.model.Users;
 
@@ -32,7 +32,7 @@ public class cartProductController extends HttpServlet {
 		int quantity = Integer.parseInt(req.getParameter("quan"));
 		double price = Double.parseDouble(req.getParameter("pri"));
 		CartDaoImpl cartdao = new CartDaoImpl();
-		cart cart = new cart(product, user, quantity, price);
+		Cart cart = new Cart(product, user, quantity, price);
 		UserDaoImpl userdao = new UserDaoImpl();
 		int i = cartdao.insertCart(cart);
 		try {

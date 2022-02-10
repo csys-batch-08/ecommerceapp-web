@@ -2,7 +2,7 @@ package com.ecommerceshoe.model;
 
 import java.io.Serializable;
 
-public class cart implements Serializable {
+public class Cart implements Serializable {
 	private Product product;
 	private Users user;
 	private int quantity;
@@ -40,7 +40,7 @@ public class cart implements Serializable {
 		this.price = price;
 	}
 
-	public cart(Product product, Users user, int quantity, double price) {
+	public Cart(Product product, Users user, int quantity, double price) {
 		super();
 		this.product = product;
 		this.user = user;
@@ -48,12 +48,12 @@ public class cart implements Serializable {
 		this.price = price;
 	}
 
-	public cart() {
+	public Cart() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public cart(Product product1, Users user1, int quantity2) {
+	public Cart(Product product1, Users user1, int quantity2) {
 		this.product = product1;
 		this.user = user1;
 		this.quantity = quantity2;

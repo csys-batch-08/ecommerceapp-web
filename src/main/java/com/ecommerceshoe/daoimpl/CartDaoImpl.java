@@ -9,11 +9,11 @@ import java.util.List;
 import com.ecommerceshoe.Dao.CartDao;
 import com.ecommerceshoe.model.Product;
 import com.ecommerceshoe.model.Users;
-import com.ecommerceshoe.model.cart;
+import com.ecommerceshoe.model.Cart;
 import com.ecommerceshoe.util.ConnectionUtil;
 
 public class CartDaoImpl implements CartDao {
-	public int insertCart(cart carts) {
+	public int insertCart(Cart carts) {
 		String cartQuery = "insert into Cart_details(User_id,products_id,quantity,price) values (?,?,?,?)";
 		Connection connection = ConnectionUtil.getDbconnection();
 		PreparedStatement preparedstatement = null;
@@ -38,12 +38,12 @@ public class CartDaoImpl implements CartDao {
 		return i;
 	}
 
-	public List<cart> showCart(Users user) {
-		List<cart> cartList = new ArrayList<>();
+	public List<Cart> showCart(Users user) {
+		List<Cart> cartList = new ArrayList<>();
 		String showQuery = "select Cartitems_id,products_id,User_id,quantity,price from  Cart_details  where User_id=? ";
 		Connection connection = ConnectionUtil.getDbconnection();
 		PreparedStatement preparedstatement = null;
-		cart carts = null;
+		Cart carts = null;
 		ResultSet resultset = null;
 		try {
 			preparedstatement = connection.prepareStatement(showQuery);
@@ -54,7 +54,7 @@ public class CartDaoImpl implements CartDao {
 			while (resultset.next()) {
 				Users users = userdao.findUserId(resultset.getInt(3));
 				Product product = productdao.findProduct(resultset.getInt(2));
-				carts = new cart(product, user, resultset.getInt(4), resultset.getDouble(5));
+				carts = new Cart(product, user, resultset.getInt(4), resultset.getDouble(5));
 				cartList.add(carts);
 			}
 		} catch (SQLException e) {

@@ -43,9 +43,14 @@ public class UserLoginController extends HttpServlet {
 				throw new ErrorFound();
 			}
 		} catch (ErrorFound e) {
+			try {
 			HttpSession session = req.getSession();
 			session.setAttribute("invalid", e.getMessage2());
 			resp.sendRedirect("index.jsp");
+			}
+			catch(Exception a) {
+				a.printStackTrace();
+			}
 		}
 		catch(Exception e) {
 			e.printStackTrace();

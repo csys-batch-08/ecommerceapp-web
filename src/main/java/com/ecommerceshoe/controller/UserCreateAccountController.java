@@ -27,9 +27,9 @@ protected void service(HttpServletRequest req, HttpServletResponse resp) throws 
 		String address = req.getParameter("address");
 		UserDaoImpl userdao = new UserDaoImpl();
 		Users user = new Users(name, password, mobileno, email, address, 0.0);
-		userdao.inserUser(user);
+		int i=userdao.inserUser(user);
 		try {
-		if (user!= null) {
+		if ( i!=0) {
 			resp.sendRedirect("index.jsp");
 		} 
 		else {
