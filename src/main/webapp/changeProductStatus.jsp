@@ -32,7 +32,7 @@ form {
 </style>
 </head>
 <body>
-<table>
+<table  aria-describedby="changeProduct">
 <c:set var="proId" value="${param.proId}" />
 <c:set var="bName" value="${param.bName}" />
 <c:set var="bType" value="${param.bType}" />
@@ -40,7 +40,7 @@ form {
 <c:set var="color" value="${param.color}" />
 <c:set var="prices" value="${param.prices}" />
 <tr>
-<td>
+<th>
 <h3>productId:${proId}</h3>
 <h3>brandName:${bName}</h3>
 <h3>brandType:${bType}</h3>
@@ -50,7 +50,7 @@ form {
 <h2>Do You Want To UpdateProduct?</h2>
 <a href="deleteProductController?proid=${proId}"><button>yes</button></a>
 <a href="deleteProduct.jsp"><button>no</button></a>
-</td>
+</th>
 </tr>
 </table>
 </body>

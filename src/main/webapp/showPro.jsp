@@ -111,13 +111,13 @@ h5{
 		
 
 			<div style="background-color:;" id="products">
-				<table>
+				<table  aria-describedby="showproduct">
 				<c:forEach items="${sessionScope.product}" var="productlist">
 				
 					<tr>
-						<td><img src="assets/images/${ productlist.getColor()}.jpg" alt="img"
-							width=300px height=300px><br></td>
-						<td>
+						<th><img src="assets/images/${ productlist.getColor()}.jpg" alt="img"
+							width=300px height=300px><br></th>
+						<th>
 							<h3>BrandName: ${ productlist.getBrandName()}</h3>
 							<h3>BrandType :${ productlist.getBrandType()}</h3>
 							<h3>BrandSize :${ productlist.getBrandSize()}</h3>
@@ -136,7 +136,7 @@ h5{
 							href="cartgetvalue?brandname=${ productlist.getBrandName()}&btype=${ productlist.getBrandType()}&bsize=${ productlist.getBrandSize()}&color=${ productlist.getColor()}"><button>
 									<strong> AddCart</strong>
 								</button></a>
-						</td>
+						</th>
 					</tr>
 					</c:forEach>
 				</table>

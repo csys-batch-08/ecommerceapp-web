@@ -51,14 +51,14 @@ li a:hover:not(.active) {
 
 		</ul>
 		</div>
-	<table>
+	<table  aria-describedby="search">
 		<c:forEach items="${requestScope.search}" var="searchpro">
 			<tr>
 
 
-				<td><img src="assets/images/${ searchpro.getColor()}.jpg" alt="img"
-					width=300px height=300px><br></td>
-				<td>
+				<th><img src="assets/images/${ searchpro.getColor()}.jpg" alt="img"
+					width=300px height=300px><br></th>
+				<th>
 					<h3>BrandName: ${ searchpro.getBrandName()}</h3>
 					<h3>BrandType :${ searchpro.getBrandType()}</h3>
 					<h3>BrandSize :${ searchpro.getBrandSize()}</h3>
@@ -77,7 +77,7 @@ li a:hover:not(.active) {
 					href="cartgetvalue?brandname=${ searchpro.getBrandName()}&btype=${ searchpro.getBrandType()}&bsize=${ searchpro.getBrandSize()}&color=${ searchpro.getColor()}"><button>
 							<strong> AddCart</strong>
 						</button></a>
-				</td>
+				</th>
 
 			</tr>
 		</c:forEach>
