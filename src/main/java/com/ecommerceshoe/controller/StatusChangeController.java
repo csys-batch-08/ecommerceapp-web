@@ -20,10 +20,11 @@ import com.ecommerceshoe.model.Order;
 @WebServlet("/StatusChange")
 public class StatusChangeController extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		HttpSession session = request.getSession();
+	
 		int orderid = Integer.parseInt(request.getParameter("orderId"));
 		OrderDaoImpl orderdao = new OrderDaoImpl();
 		Boolean b = orderdao.statuschange(orderid);
@@ -32,7 +33,7 @@ public class StatusChangeController extends HttpServlet {
 		if (Boolean.TRUE.equals(b)) {
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("statusChange.jsp");
 			requestDispatcher.forward(request, response);
-//			response.sendRedirect("statusChange.jsp");
+
 		}
 	}
 }

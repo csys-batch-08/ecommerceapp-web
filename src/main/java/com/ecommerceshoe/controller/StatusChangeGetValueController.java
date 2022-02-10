@@ -20,9 +20,10 @@ import com.ecommerceshoe.model.Order;
 @WebServlet("/statuschangegetvalue")
 public class StatusChangeGetValueController extends HttpServlet {
 
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession();
+		
 		OrderDaoImpl orderdao = new OrderDaoImpl();
 		List<Order> orderList = orderdao.ShowOrder();
 		request.setAttribute("order", orderList);

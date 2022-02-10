@@ -21,7 +21,7 @@ import com.ecommerceshoe.daoimpl.ProductDaoImpl;
 public class ProductController extends HttpServlet {
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String brandName = req.getParameter("bname");
 		String brandType = req.getParameter("Btype");

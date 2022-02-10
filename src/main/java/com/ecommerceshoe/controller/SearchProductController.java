@@ -20,6 +20,7 @@ import com.ecommerceshoe.model.Product;
 @WebServlet("/SearchProductController")
 public class SearchProductController extends HttpServlet {
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 	

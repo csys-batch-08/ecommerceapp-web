@@ -25,7 +25,7 @@ import com.ecommerceshoe.model.Users;
 public class cartProductController extends HttpServlet {
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		Users user = (Users) session.getAttribute("CurrentUser");
 		Product product = (Product) session.getAttribute("currentproduct");

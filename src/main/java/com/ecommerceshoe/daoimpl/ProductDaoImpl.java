@@ -236,12 +236,21 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	public List<Product> filterSize(String search) {
-		List<Product> SizeList = new ArrayList<Product>();
+		List<Product> SizeList = new ArrayList<>();
 		Product product = null;
 		String showQuery = "select products_id,Brand_name,Brand_type,Brand_size,color,prices,manufacture_date,status from Product"
 				+ " where Brand_name like'%"
 				+ search + "%' or Brand_type like'%" + search + "%' or Brand_size like'%" + search
 				+ "%' or color like'%" + search + "%' and status='available' ";
+//		
+//		String showQuery = "select products_id,Brand_name,Brand_type,Brand_size,color,prices,manufacture_date,status from Product"
+//				+ " where status='available'"
+//				+ " where Brand_name like'%"
+//				+ search + "%' or Brand_type like'%" + search + "%' or Brand_size like'%" + search
+//				+ "%' or color like'%" + search + "%' and status='available' ";
+//		
+//		select jioplan_id,plan_name,price,validity,benefits,operator_id,status from jio_plans where status='Active' 
+//				and plan_name like ? or price like ?";
 	
 		Connection connection = ConnectionUtil.getDbconnection();
 		PreparedStatement preparedstatement = null;
@@ -265,7 +274,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	public List<Product> showProduct(int productID) {
-		List<Product> productsList = new ArrayList<Product>();
+		List<Product> productsList = new ArrayList<>();
 		String showQuery = "select products_id,Brand_name,Brand_type,Brand_size,color,prices,manufacture_date from Product where products_id= ?";
 		Connection connection = ConnectionUtil.getDbconnection();
 		PreparedStatement preparedstatement = null;
@@ -291,7 +300,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	public List<Product> showUserProduct() {
-		List<Product> productsList = new ArrayList<Product>();
+		List<Product> productsList = new ArrayList<>();
 		String showQuery = "select products_id,Brand_name,Brand_type,Brand_size,color,prices,manufacture_date,status from Product "
 				+ "where status='available'";
 		Connection connection = ConnectionUtil.getDbconnection();

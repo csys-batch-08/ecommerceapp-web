@@ -34,11 +34,12 @@ public class orderProductController extends HttpServlet {
 		double price = Double.parseDouble(req.getParameter("pri"));
 		OrderDaoImpl orderdao = new OrderDaoImpl();
 		Order order = new Order(product, user, quantity, price, null);
+		int i=0;
 		try {
 			if (user.getWallet() > price) {
 				UserDaoImpl userdao = new UserDaoImpl();
 
-				int i = userdao.Walletupdate(price,user);
+			 i = userdao.Walletupdate(price,user);
 				session.setAttribute("wallet", user.getWallet());
 				i = orderdao.insertOrder(order);
 				if (i != 0) {

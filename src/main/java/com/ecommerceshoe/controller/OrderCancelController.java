@@ -18,7 +18,7 @@ import com.ecommerceshoe.model.Users;
 @WebServlet("/ordercancelserv")
 public class OrderCancelController extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Users user = (Users) session.getAttribute("CurrentUser");

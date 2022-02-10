@@ -17,7 +17,8 @@ import com.ecommerceshoe.daoimpl.ProductDaoImpl;
 @WebServlet("/UpdateProductController")
 public class UpdateProductController extends HttpServlet {
 
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		int brandSize = Integer.parseInt(req.getParameter("bsize"));
 		double price = Double.parseDouble(req.getParameter("pri"));

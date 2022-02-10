@@ -17,7 +17,8 @@ import com.ecommerceshoe.model.Users;
 @WebServlet("/UpdateWalletController")
 public class UpdateWalletController extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();

@@ -18,7 +18,7 @@ public class UserCreateAccountController extends HttpServlet {
 
 
 @Override
-protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String name = req.getParameter("name");
 		String password = req.getParameter("pass");
